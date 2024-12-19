@@ -49,8 +49,8 @@ const CouponCarousel = () => {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    {/* <CarouselPrevious />
+                    <CarouselNext /> */}
                 </Carousel>
             </div>
 
