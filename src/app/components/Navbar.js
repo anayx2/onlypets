@@ -44,12 +44,12 @@ const Navbar1 = () => {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center ml-[-50px] md:ml-0 lg:ml-0">
             <Image
               src={"/logo.png"}
               width={500}
               height={500}
-              className="w-60 h-15"
+              className="w-40 h-13"
               alt="LOGO"
             />
           </Link>

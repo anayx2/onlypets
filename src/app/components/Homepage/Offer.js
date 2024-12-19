@@ -1,7 +1,4 @@
-'use client';
-
-import * as React from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react';
 import {
     Carousel,
     CarouselContent,
@@ -9,115 +6,84 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useEffect, useState } from 'react';
 
-const offers = [
+import styles from '@/styles/offer.module.css'
+const couponsData = [
     {
-        brand: "FARMINA",
-        description: "APPLICABLE IN DOG & CAT FOOD",
-        discount: "50%",
-        code: "ONLY020",
-        gradient: "linear-gradient(135deg, #8B0000, #B22222)",
-        brandColor: "#FFD700",
+        brand: "Farmina",
+        discount: "Upto 50% OFF",
+        code: "COUPON50",
+        description: "Applicable in dog & Cat Food"
     },
     {
-        brand: "WHISKAS",
-        description: "APPLICABLE ON CAT FOOD",
-        discount: "40%",
-        code: "ONLY020",
-        gradient: "linear-gradient(135deg, #00008B, #0000CD)",
-        brandColor: "#40E0D0",
+        brand: "Royal Canin",
+        discount: "Upto 40% OFF",
+        code: "ROYAL40",
+        description: "Valid on all products"
     },
     {
-        brand: "PEDIGREE",
-        description: "APPLICABLE ON DOG FOOD",
-        discount: "30%",
-        code: "ONLY020",
-        gradient: "linear-gradient(135deg, #4B0082, #8A2BE2)",
-        brandColor: "#FFD700",
+        brand: "Pedigree",
+        discount: "Upto 30% OFF",
+        code: "PED30",
+        description: "On dry dog food"
     },
     {
-        brand: "ROYAL CANIN",
-        description: "APPLICABLE ON ALL PRODUCTS",
-        discount: "25%",
-        code: "ONLY020",
-        gradient: "linear-gradient(135deg, #006400, #228B22)",
-        brandColor: "#FFA500",
+        brand: "Whiskas",
+        discount: "Upto 45% OFF",
+        code: "WHISK45",
+        description: "On cat food items"
     },
+   
 ];
 
-const OfferCarousel = () => {
-    const [api, setApi] = React.useState();
-    const [current, setCurrent] = React.useState(0);
-
-    useEffect(() => {
-        if (!api) {
-            return;
-        }
-
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap());
-        });
-    }, [api]);
+const CouponCarousel = () => {
     return (
-        <div className="relative w-full max-w-screen-sm mx-auto px-4">
-            <h2 className="text-center text-gray-700 font-bold mb-2">Offers made just for you</h2>
-            <p className="text-center text-gray-500 text-sm mb-4">The more the goodies, the more your savings!</p>
+        <div className="w-full">
+            {/* Mobile and Tablet: Carousel */}
+            <div className="block md:hidden">
+                <Carousel className="w-full">
+                    <CarouselContent>
+                        {couponsData.map((coupon, index) => (
+                            <CarouselItem key={index}>
+                                <CouponCard {...coupon} />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
 
-            <Carousel
-                opts={{
-                    align: "start",
-                    loop: true,
-                }}
-                setApi={setApi}
-                className="w-full"
-            >
-                <CarouselContent className="flex">
-                    {offers.map((offer, index) => (
-                        <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/2 ">
-                            <div className="p-1">
-                                <div
-                                    className="h-[200px] w-full rounded-lg p-4 flex flex-col justify-between shadow-md"
-                                    style={{
-                                        background: offer.gradient,
-                                        color: offer.brandColor,
-                                    }}
-                                >
-                                    <div>
-                                        <h3 className="text-lg font-bold" style={{ color: offer.brandColor }}>
-                                            {offer.brand}
-                                        </h3>
-                                        <p className="text-white text-sm">{offer.description}</p>
-                                    </div>
-                                    <div className="flex items-center justify-between">
-                                        <div className="bg-white rounded-full px-3 py-1 flex justify-between items-center gap-1">
-                                            <span className="text-xs text-gray-600">USE CODE</span>
-                                            <span className="text-xs font-semibold">{offer.code}</span>
-                                        </div>
-                                        <div className="text-xl font-bold text-white text-center">
-                                            UP TO <br />
-                                            {offer.discount}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-            </Carousel>
-
-            <div className="flex justify-center mt-4 space-x-2">
-                {offers.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => api?.scrollTo(index)}
-                        className={`w-2 h-2 rounded-full transition-colors ${current === index ? "bg-yellow-500" : "bg-gray-300"
-                            }`}
-                    />
+            {/* Desktop: Grid Layout */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4">
+                {couponsData.map((coupon, index) => (
+                    <CouponCard key={index} {...coupon} />
                 ))}
             </div>
         </div>
     );
 };
 
-export default OfferCarousel;
+// Your existing card component with props
+const CouponCard = ({ brand, discount, code, description }) => {
+    return (
+        <div className="my-5">
+            <div className={styles.coupon}>
+                <div className={styles.left}>
+                    <div>{brand}</div>
+                </div>
+                <div className={styles.center}>
+                    <div className="flex flex-col items-center ml-[-10px]">
+                        <h2>{discount}</h2>
+                        <span className={styles.couponSpan}>
+                            <h3>{code}</h3>
+                        </span>
+                        <small className="mt-1">{description}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default CouponCarousel;
