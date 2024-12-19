@@ -57,6 +57,7 @@ const Hero = () => {
                                             src={banner}
                                             alt="Banner"
                                             width={1920}
+                                            quality={70}
                                             height={1080}
                                             style={{ objectFit: "cover" }}
                                             className="w-full h-[60vh] md:h-[auto]"
