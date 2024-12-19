@@ -20,7 +20,7 @@ const TipsbyExperts = () => {
                 </p>
             </div>
 
-            <div className="relative max-w-[90%] mx-auto rounded-3xl overflow-hidden">
+            <div className="relative max-w-[98%] mx-auto rounded-3xl overflow-hidden">
                 {/* React Player */}
                 <ReactPlayer
                     url="/homepagevideo.mp4" // Local or external video URL
