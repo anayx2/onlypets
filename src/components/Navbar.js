@@ -50,7 +50,7 @@ const Navbar1 = () => {
               src={"/logo.png"}
               width={500}
               height={500}
-              className="w-40 h-13 opacity-0 transition-opacity duration-300 ease-in-out"
+              className="w-40 h-13 opacity-5 transition-opacity duration-300 ease-in-out"
               alt="LOGO"
               onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
             />
