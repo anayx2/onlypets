@@ -48,7 +48,7 @@ export function Footer() {
     };
 
     return (
-        <footer className="bg-[#0A0F1C] text-white py-16 rounded-t-3xl">
+        <footer className="bg-[#0A0F1C] text-white py-16 rounded-t-3xl mt-20">
             <div className="container mx-auto px-6 md:px-12">
                 <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-12 justify-items-center">
                     {/* Menu Sections */}
@@ -74,7 +74,7 @@ export function Footer() {
                     <p className="text-gray-400 mb-4">
                         Stay updated with the latest collections and exclusive offers.
                     </p>
-                    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-2">
+                    <form onSubmit={handleSubmit} className="flex flex-row items-center gap-2">
                         <input
                             type="email"
                             placeholder="Enter your email"
@@ -85,7 +85,7 @@ export function Footer() {
                         />
                         <button
                             type="submit"
-                            className="px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition"
+                            className="px-4 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition"
                         >
                             SUBSCRIBE
                         </button>

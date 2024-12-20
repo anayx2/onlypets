@@ -36,7 +36,7 @@ const Navbar1 = () => {
         {/* Top Bar */}
         <div className="flex h-20 items-center justify-between px-4">
           {/* Mobile Menu Toggle */}
-          
+
           <button
             className="md:hidden"
             onClick={() => setDrawerOpen(true)}
@@ -50,8 +50,9 @@ const Navbar1 = () => {
               src={"/logo.png"}
               width={500}
               height={500}
-              className="w-40 h-13"
+              className="w-40 h-13 opacity-0 transition-opacity duration-300 ease-in-out"
               alt="LOGO"
+              onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
             />
           </Link>
 
@@ -69,7 +70,7 @@ const Navbar1 = () => {
 
           {/* Utility Icons */}
           <div className="flex items-center space-x-6 text-black">
-           
+
 
             <Link href="/cart" className="flex flex-col items-center text-black">
               <button>

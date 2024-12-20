@@ -78,13 +78,14 @@ export default function ProductPage() {
                             </div>
                             <div className="flex items-center mt-2">
                                 <span className="flex items-center text-yellow-500">
-                                    {[...Array(4)].map((_, index) => (
+                                    {[...Array(5)].map((_, index) => (
                                         <Star
                                             key={index}
-                                            fill={index < Math.round(product.rating) ? "yellow" : "none"}
+                                            fill={index < Math.round(product.rating) ? "#FFD700" : "none"} // Changed to golden color
                                         />
                                     ))}
                                 </span>
+
                                 <span className="ml-2 text-gray-600">{product.rating} Stars</span>
                             </div>
                         </div>
@@ -151,7 +152,7 @@ export default function ProductPage() {
                                                     {[...Array(5)].map((_, i) => (
                                                         <Star
                                                             key={i}
-                                                            fill={i < review.rating ? "yellow" : "none"}
+                                                            fill={i < review.rating ? "#FFD700" : "none"}
                                                         />
                                                     ))}
                                                 </span>
