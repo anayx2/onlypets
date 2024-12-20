@@ -1,38 +1,37 @@
+import { Footer } from "@/components/Footer";
+import Ad from "@/components/Homepage/Ad";
+import Ad2 from "@/components/Homepage/Ad2";
+import BestSeller from "@/components/Homepage/BestSeller";
+import Category from "@/components/Homepage/Category";
+import FAQSection from "@/components/Homepage/FAQ";
+import Hero from "@/components/Homepage/Hero";
+import ProductPage from "@/components/Homepage/LookingFor";
+import CouponCarousel from "@/components/Homepage/Offer";
+import Testimonial from "@/components/Homepage/Testimonial";
+import TipsbyExperts from "@/components/Homepage/Tipsbyexpet";
+import Topfoodbrand from "@/components/Homepage/Topfoodbrand";
+import Treats from "@/components/Homepage/Treats";
+import Navbar1 from "@/components/Navbar";
 import React from "react";
-import NavBar from "./components/Navbar";
-import Hero from "./components/Homepage/Hero";
-import Category from "./components/Homepage/Category";
-import OfferCarousel from "./components/Homepage/Offer";
-import Ad from "./components/Homepage/Ad";
-import ProductPage from "./components/Homepage/LookingFor";
-import Ad2 from "./components/Homepage/Ad2";
-import Treats from "./components/Homepage/Treats";
-import Topfoodbrand from "./components/Homepage/Topfoodbrand";
-import BestSeller from "./components/Homepage/BestSeller";
-import Tipsbyexpet from "./components/Homepage/Tipsbyexpet";
-import Testimonial from "./components/Homepage/Testimonial";
-import FAQSection from "./components/Homepage/FAQ";
-import { Footer } from "./components/Footer";
+
 
 const page = () => {
   return (
     <>
-      <NavBar />
+      <Navbar1 />
       <Hero />
       <Category />
-      <OfferCarousel />
+      <CouponCarousel />
       <Ad />
       <ProductPage />
       <Ad2 />
       <Treats />
       <Topfoodbrand />
       <BestSeller />
-      <Tipsbyexpet />
+      <TipsbyExperts />
       <Testimonial />
       <FAQSection />
       <Footer />
-
-
     </>
   );
 };
