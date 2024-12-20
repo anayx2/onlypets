@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react"; import Image from 'next/image';
@@ -11,6 +10,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+// import { useCart } from '../Cartcontext';
 
 const products = [
     {
@@ -88,7 +88,11 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
 
     const increment = () => setQuantity((prev) => prev + 1);
     const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+    // const { addToCart } = useCart();
 
+    const handleAddToCart = () => {
+        addToCart(product);
+    };
     return (
         <div className="bg-white rounded-lg md:px-3 lg:md:px-3 w-[160px] lg:w-[auto] md:w-[auto] sm:pt-4">
             <div className="p-2">
@@ -100,19 +104,19 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
 
                     }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#71216A] text-white px-2 py-1 space-x-2 my-2">
                         <button
-                            className="p-1 rounded-full "
-                            onClick={increment}
-                            aria-label="Increase quantity"
-                        >
-                            <Plus size={10} />
-                        </button>
-                        <span className="text-sm font-semibold">{quantity}</span>
-                        <button
                             className="p-1 rounded-full"
                             onClick={decrement}
                             aria-label="Decrease quantity"
                         >
-                            <Minus size={10} />
+                            <Minus size={15} />
+                        </button>
+                        <span className="text-sm font-semibold">{quantity}</span>
+                        <button
+                            className="p-1 rounded-full "
+                            onClick={increment}
+                            aria-label="Increase quantity"
+                        >
+                            <Plus size={15} />
                         </button>
                     </div>
                 </div>
@@ -139,7 +143,10 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
                 </div>
             </div>
             {/* Add to Cart */}
-            <button className="w-full bg-[#71216A] text-white py-2 rounded-lg text-xs sm:text-base hover:bg-purple-800 transition-colors">
+            <button
+                className="w-full bg-[#71216A] text-white py-2 rounded-lg text-xs sm:text-base hover:bg-purple-800 transition-colors"
+                onClick={handleAddToCart}
+            >
                 Add To Cart
             </button>
         </div>

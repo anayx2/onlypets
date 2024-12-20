@@ -98,19 +98,19 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
 
                     }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#71216A] text-white px-2 py-1 space-x-2 my-2">
                         <button
-                            className="p-1 rounded-full "
-                            onClick={increment}
-                            aria-label="Increase quantity"
-                        >
-                            <Plus size={10} />
-                        </button>
-                        <span className="text-sm font-semibold">{quantity}</span>
-                        <button
                             className="p-1 rounded-full"
                             onClick={decrement}
                             aria-label="Decrease quantity"
                         >
-                            <Minus size={10} />
+                            <Minus size={15} />
+                        </button>
+                        <span className="text-sm font-semibold">{quantity}</span>
+                        <button
+                            className="p-1 rounded-full "
+                            onClick={increment}
+                            aria-label="Increase quantity"
+                        >
+                            <Plus size={15} />
                         </button>
                     </div>
                 </div>
@@ -131,8 +131,8 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
                 <div className="flex items-start sm:gap-2 sm:mb-4 flex-col">
                     <span className="text-green-700 text-xs sm:text-sm">{discount}% off</span>
                     <div>
-                        <span className="font-bold text-[12px]">₹{salePrice.toFixed(2)}</span>
-                        <span className="text-gray-400 line-through mx-1 sm:mx-2 text-xs sm:text-sm">₹{originalPrice.toFixed(2)}</span>
+                        <span className="font-bold text-[12px] lg:text-lg">₹{salePrice.toFixed(2)}</span>
+                        <span className="text-gray-400 line-through mx-1 sm:mx-2 text-xs sm:text-sm lg:text-lg">₹{originalPrice.toFixed(2)}</span>
                     </div>
                 </div>
             </div>
