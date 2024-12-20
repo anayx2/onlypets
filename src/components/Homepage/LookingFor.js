@@ -11,8 +11,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
-
 const products = [
     {
         id: 1,
@@ -131,7 +129,7 @@ const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, di
                 </p>
                 {/* Pricing Section */}
                 <div className="flex items-start sm:gap-2 sm:mb-4 flex-col">
-                    <span className="text-red-500 text-xs sm:text-sm">{discount}% off</span>
+                    <span className="text-green-700 text-xs sm:text-sm">{discount}% off</span>
                     <div>
                         <span className="font-bold text-[12px]">₹{salePrice.toFixed(2)}</span>
                         <span className="text-gray-400 line-through mx-1 sm:mx-2 text-xs sm:text-sm">₹{originalPrice.toFixed(2)}</span>
