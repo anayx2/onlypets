@@ -18,7 +18,6 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <Navbar1 />
       <Hero />
       <Category />
       <CouponCarousel />
@@ -31,7 +30,6 @@ const page = () => {
       <TipsbyExperts />
       <Testimonial />
       <FAQSection />
-      <Footer />
     </>
   );
 };

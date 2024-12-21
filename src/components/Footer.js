@@ -74,18 +74,18 @@ export function Footer() {
                     <p className="text-gray-400 mb-4">
                         Stay updated with the latest collections and exclusive offers.
                     </p>
-                    <form onSubmit={handleSubmit} className="flex flex-row items-center gap-2">
+                    <form onSubmit={handleSubmit} className="flex flex-row justify-center items-center gap-2">
                         <input
                             type="email"
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="flex-1 px-4 py-3 rounded-lg bg-white text-black placeholder:text-gray-400"
+                            className="flex-1 max-w-[60%] px-4 py-3 rounded-lg bg-white text-black placeholder:text-gray-400"
                             required
                         />
                         <button
                             type="submit"
-                            className="px-4 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition"
+                            className="px-4 py-3 bg-orange-500 text-white text-sm md:text-base lg:text-base font-medium rounded-lg hover:bg-orange-600 transition"
                         >
                             SUBSCRIBE
                         </button>
