@@ -91,8 +91,9 @@ export default function ProductPage() {
     return (
         <>
             <div className="container max-w-7xl mx-auto px-4 py-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-8 ">
+                    <div className="space-y-4 rounded-lg md:border-gray-300 md:border-[1px] lg:border-gray-300 lg:border-[1px] p-5"
+                        style={{ height: "fit-content" }}>
                         <div
                             className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
                             onClick={() => setIsFullscreen(true)}
@@ -105,7 +106,7 @@ export default function ProductPage() {
                                 priority
                             />
                         </div>
-                        <div className="grid grid-cols-4 gap-2">
+                        <div className="grid grid-cols-4 gap-3 border-gray-400 border-[1px] p-2 rounded-lg">
                             {product.images.map((image, index) => (
                                 <button
                                     key={index}
