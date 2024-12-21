@@ -1,70 +1,160 @@
 'use client';
 
-import { CreditCard, Package, Settings, User, Wallet, } from 'lucide-react';
-import { useState } from 'react';
+import { CreditCard, Heart, Package, Settings, User, User2, Wallet, } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
+import { useState } from 'react';
+import Image from "next/image"
+import { Edit } from 'lucide-react'
+import PersonalInformation from '@/components/profile/PersonalInformation';
+import MyOrders from './MyOrders';
 
 export default function Profile() {
+    const profileData = {
+        name: "Test User",
+        avatar: "/cat_profile.gif",
+        coverImage: "/food-banner.jpg",
+        stats: {
+            reviews: 2,
+            photos: 0,
+            followers: 1
+        }
+    }
     const [gender, setGender] = useState('male');
+    const [selectedMenu, setSelectedMenu] = useState('settings');
 
+    const handleMenuClick = (menu) => {
+        setSelectedMenu(menu);
+    };
     return (
         <div className="min-h-screen bg-gray-50/50">
-            <div className="container max-w-7xl mx-auto p-4 space-y-4">
+            <div className="relative w-full">
+                {/* Cover Image */}
+                <div className="relative h-[400px] md:h-72 w-full overflow-hidden">
+                    <Image
+                        src={'/profilecover.jpg'}
+                        alt="Profile cover"
+                        fill
+
+                        className="w-full h-40dvh object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                </div>
+
+                {/* Profile Content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-6 md:items-start">
+                    <div className="container mx-auto max-w-7xl w-full">
+                        <div className="flex flex-col items-center md:flex-row md:items-end gap-4 md:gap-6">
+                            {/* Avatar */}
+                            <div className="relative md:-mb-12">
+                                <div className="h-24 w-24 md:h-32 md:w-32 rounded-full overflow-hidden bg-purple-500 flex items-center justify-center border-4 border-white">
+                                    {profileData.avatar ? (
+                                        <img
+                                            src={profileData.avatar}
+                                            alt={profileData.name}
+                                            width={128}
+                                            height={128}
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        <span className="text-5xl md:text-6xl text-white">
+                                            {profileData.name.charAt(0).toLowerCase()}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Profile Info */}
+                            <div className="flex-grow text-center md:text-left">
+                                <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                                    {profileData.name}
+                                </h1>
+
+                                {/* Stats */}
+                                {/* <div className="flex justify-center md:justify-start gap-6 text-white">
+                                    <div className="text-center">
+                                        <div className="text-xl md:text-2xl font-semibold">{profileData.stats.reviews}</div>
+                                        <div className="text-sm">ORDERS</div>
+                                    </div>
+                                    <div className="relative text-center">
+                                        <div className="absolute -left-3 top-1 h-[80%] w-px bg-white/20" />
+                                        <div className="text-xl md:text-2xl font-semibold">{profileData.stats.photos}</div>
+                                        <div className="text-sm">Saved</div>
+                                    </div>
+                                    <div className="relative text-center">
+                                        <div className="absolute -left-3 top-1 h-[80%] w-px bg-white/20" />
+                                        <div className="text-xl md:text-2xl font-semibold">{profileData.stats.followers}</div>
+                                        <div className="text-sm">Followers</div>
+                                    </div>
+                                </div> */}
+                            </div>
+
+                            {/* Edit Button */}
+                            <button
+                                className="mt-4 md:mt-0 inline-flex items-center px-6 py-2 rounded-md bg-[#71216A] text-white transition-colors"
+                                href="#settings"
+                                onClick={() => handleMenuClick('settings')}
+                            >
+                                <Edit className="w-4 h-4 mr-2" />
+                                Edit profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="container max-w-7xl mx-auto mt-10 p-4 space-y-4">
                 <div className="grid md:grid-cols-[280px_1fr] gap-4">
                     {/* Sidebar */}
                     <div className="space-y-4">
-                        <div className="bg-white rounded-lg shadow-sm">
-                            <div className="p-6">
-                                <div className="flex items-center gap-4">
-                                    <div className="h-16 w-16 rounded-full bg-gray-100 overflow-hidden">
-                                        <img
-                                            src="/placeholder.svg"
-                                            alt="Profile"
-                                            className="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500">Hello,</p>
-                                        <h2 className="text-xl font-semibold">Anay Tiwari</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white rounded-lg shadow-sm">
+                        <div className="bg-white rounded-lg shadow-md">
                             <nav className="flex flex-col">
                                 <a
-                                    href="#orders"
-                                    className="flex items-center h-12 px-4 hover:bg-gray-50 text-gray-700"
-                                >
-                                    <Package className="mr-2 h-5 w-5" />
-                                    MY ORDERS
-                                </a>
-                                <a
                                     href="#settings"
-                                    className="flex items-center h-12 px-4 hover:bg-gray-50 text-gray-700"
+                                    onClick={() => handleMenuClick('settings')}
+                                    className="flex items-center h-12 px-4 hover:bg-gray-50 text-[#71216A]"
                                 >
-                                    <Settings className="mr-2 h-5 w-5" />
+                                    <User2 className="mr-2 h-5 w-5 text-[#71216A]" />
                                     ACCOUNT SETTINGS
                                 </a>
-                                <div className="border-t border-gray-200" />
-                                <div className="px-4 py-2">
-                                    <p className="text-sm text-blue-600">Profile Information</p>
-                                </div>
+                                <hr className='border-1 border-gray-400 '>
+                                </hr>
                                 <a
+                                    href="#orders"
+                                    onClick={() => handleMenuClick('orders')}
+                                    className="flex items-center h-12 px-4 hover:bg-gray-50 text-[#71216A]"
+                                >
+                                    <Package className="mr-2 h-5 w-5 text-[#71216A]" />
+                                    MY ORDERS
+                                </a>
+                                <hr className='border-1 border-gray-400 '>
+                                </hr>
+                                <a
+                                    href="#orders"
+                                    onClick={() => handleMenuClick('orders')}
+                                    className="flex items-center h-12 px-4 hover:bg-gray-50 text-[#71216A]"
+                                >
+                                    <Heart className="mr-2 h-5 w-5 text-[#71216A]" />
+
+                                    WISHLIST
+                                </a>
+
+                                {/* <a
                                     href="#addresses"
+                                    onClick={() => handleMenuClick('addresses')}
                                     className="flex items-center h-12 px-4 hover:bg-gray-50 text-gray-700"
                                 >
                                     Manage Addresses
                                 </a>
                                 <a
                                     href="#pan"
+                                    onClick={() => handleMenuClick('pan')}
                                     className="flex items-center h-12 px-4 hover:bg-gray-50 text-gray-700"
                                 >
                                     PAN Card Information
-                                </a>
-                                <div className="border-t border-gray-200" />
-                                <div className="px-4 py-2">
+                                </a> */}
+                                {/* <div className="border-t border-gray-200 my-2" /> */}
+                                {/* <div className="px-4 py-2">
                                     <p className="text-sm font-medium flex items-center text-gray-700">
                                         <Wallet className="mr-2 h-4 w-4" />
                                         PAYMENTS
@@ -88,117 +178,18 @@ export default function Profile() {
                                     className="flex items-center h-12 px-4 hover:bg-gray-50 text-gray-700"
                                 >
                                     Saved Cards
-                                </a>
+                                </a> */}
                             </nav>
                         </div>
                     </div>
 
                     {/* Main Content */}
-                    <div className="bg-white rounded-lg shadow-sm">
-                        <div className="p-6">
-                            <div className="space-y-6">
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-lg font-medium">Personal Information</h3>
-                                    <button className="text-blue-600 hover:text-blue-700">
-                                        Edit
-                                    </button>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                                            First Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="firstName"
-                                            defaultValue="Anay"
-                                            readOnly
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                                            Last Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="lastName"
-                                            defaultValue="Tiwari"
-                                            readOnly
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        Your Gender
-                                    </label>
-                                    <div className="flex gap-4">
-                                        <label className="flex items-center space-x-2">
-                                            <input
-                                                type="radio"
-                                                name="gender"
-                                                value="male"
-                                                checked={gender === 'male'}
-                                                onChange={(e) => setGender(e.target.value)}
-                                                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                                            />
-                                            <span className="text-gray-700">Male</span>
-                                        </label>
-                                        <label className="flex items-center space-x-2">
-                                            <input
-                                                type="radio"
-                                                name="gender"
-                                                value="female"
-                                                checked={gender === 'female'}
-                                                onChange={(e) => setGender(e.target.value)}
-                                                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                                            />
-                                            <span className="text-gray-700">Female</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div className="border-t border-gray-200" />
-
-                                <div className="space-y-4">
-                                    <div className="flex items-center justify-between">
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                            Email Address
-                                        </label>
-                                        <button className="text-blue-600 hover:text-blue-700">
-                                            Edit
-                                        </button>
-                                    </div>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        defaultValue="holeeday@gmail.com"
-                                        readOnly
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                                    />
-                                </div>
-
-                                <div className="space-y-4">
-                                    <div className="flex items-center justify-between">
-                                        <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
-                                            Mobile Number
-                                        </label>
-                                        <button className="text-blue-600 hover:text-blue-700">
-                                            Edit
-                                        </button>
-                                    </div>
-                                    <input
-                                        type="tel"
-                                        id="mobile"
-                                        defaultValue="+919214399998"
-                                        readOnly
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                                    />
-                                </div>
-                            </div>
+                    <div className="bg-white rounded-lg border-[1px] shadow-md w-full p-6">
+                        <div className="space-y-6">
+                            {selectedMenu === 'settings' && <PersonalInformation />}
+                            {selectedMenu === 'orders' && <MyOrders />}
+                            {selectedMenu === 'addresses' && 'sdfsd'}
+                            {selectedMenu === 'pan' && 'sfsdf'}
                         </div>
                     </div>
                 </div>

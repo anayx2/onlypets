@@ -20,10 +20,6 @@ export const metadata = {
   title: "Only Pets",
   description: "-",
 };
-// const handleCheckout = () => {
-//   console.log("Proceeding to checkout...");
-//   // Add your checkout logic here
-// };
 
 export default function RootLayout({ children }) {
   return (
@@ -31,20 +27,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <CartContext.Provider
-          value={{
-            cartItems,
-            addToCart,
-            clearCart,
-            getTotalItems,
-            getTotalPrice,
-            handleCheckout,
-          }}
-        > */}
+
         <Navbar1 />
         {children}
         <Footer />
-        {/* </CartContext.Provider> */}
+
       </body>
     </html>
   );
