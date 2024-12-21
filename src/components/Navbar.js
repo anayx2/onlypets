@@ -72,7 +72,7 @@ const Navbar1 = () => {
           <div className="flex items-center space-x-6 text-black">
 
 
-            <Link href="/cart" className="flex flex-col items-center text-black">
+            <Link href="/product" className="flex flex-col items-center text-black">
               <button>
                 <ShoppingCart className="h-6 w-6" />
               </button>
