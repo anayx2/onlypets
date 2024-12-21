@@ -5,7 +5,7 @@ import Navbar1 from "@/components/Navbar";
 export default function Template({ children }) {
     return (
         <>
-            <Navbar1 />
+            {/* <Navbar1 /> */}
             {children}
             <Footer />
         </>
