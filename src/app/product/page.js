@@ -149,7 +149,6 @@ export default function ProductPage() {
                                 <span className="ml-2 text-gray-600">{product.rating} Stars</span>
                             </div>
                         </div>
-
                         <div>
                             <h2 className="text-sm font-medium mb-4">Size/Weight</h2>
                             <div className="flex gap-2">
@@ -306,7 +305,9 @@ export default function ProductPage() {
                 </div>
             </div>
             {isFullscreen && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
+                    style={{ pointerEvents: 'auto' }} // Ensure the modal overlay receives touch events on mobile
+                >
                     <button
                         onClick={() => setIsFullscreen(false)}
                         className="absolute top-4 right-4 text-white hover:text-gray-300"
