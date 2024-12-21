@@ -310,7 +310,7 @@ export default function ProductPage() {
                 >
                     <button
                         onClick={() => setIsFullscreen(false)}
-                        className="absolute top-4 right-4 text-white hover:text-gray-300"
+                        className="absolute top-4 right-4 text-white hover:text-gray-300 z-[100]"
                     >
                         <X className="h-8 w-8" />
                     </button>
