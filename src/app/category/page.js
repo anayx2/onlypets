@@ -294,7 +294,7 @@ export default function ProductListing() {
                     </span>
                   </span>
                 </div>
-                <button className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">
+                <button className="w-full bg-[#FF7700] font-bold text-white py-2 rounded-md hover:bg-gray-800">
                   Add to cart
                 </button>
               </div>
