@@ -269,7 +269,7 @@ export default function ProductListing() {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="font-medium text-sm mb-2">{product.name}</h3>
+                <h3 className="font-medium text-sm mb-2 text-[12px] md:text-sm lg:text-sm">{product.name}</h3>
                 <p className="text-sm text-gray-500 mb-2">{product.weight}</p>
                 <div className="flex items-center gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
