@@ -305,98 +305,104 @@ export default function ProductListing() {
 
       {/* Mobile Filter Modal */}
       {isFilterOpen && (
-        <div className="fixed inset-0 z-50 bg-white md:hidden overflow-y-auto	">
-          <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="font-semibold text-lg">Filters</h2>
-            <button
-              onClick={() => setIsFilterOpen(false)}
-              className="text-gray-500 hover:text-gray-800"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className="p-4 space-y-6">
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-4">Category</h3>
-              <div className="space-y-2">
-                {["Food", "Treats", "Litter & Accessories", "Toys", "Health & Care"].map((category, index) => (
-                  <label key={index} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="category"
-                      value={category.toLowerCase()}
-                      className="accent-blue-500"
-                    />
-                    <span>{category}</span>
-                  </label>
-                ))}
-              </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsFilterOpen(false)}
+        >
+          <div className="bg-white w-11/12 max-w-md max-h-[90vh] rounded-lg shadow-lg flex flex-col" >
+            {/* Header */}
+            <div className="flex justify-end p-5 ">
+              {/* <button
+                onClick={() => setIsFilterOpen(false)}
+                className="text-gray-500 hover:text-gray-800"
+              >
+                ✕
+              </button> */}
             </div>
 
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-4">Price</h3>
-              <div className="space-y-4">
-                <input
-                  type="range"
-                  min="0"
-                  max="2000"
-                  value={priceRange[1]}
-                  onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                  className="w-full accent-blue-500"
-                />
-                <div className="flex justify-between text-sm">
-                  <span>₹{priceRange[0]}</span>
-                  <span>₹{priceRange[1]}</span>
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              <div className="border rounded-lg p-4">
+                <h3 className="font-semibold mb-4 text-md">Category</h3>
+                <div className="space-y-2">
+                  {["Food", "Treats", "Litter & Accessories", "Toys", "Health & Care"].map((category, index) => (
+                    <label key={index} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="category"
+                        value={category.toLowerCase()}
+                        className="accent-[#FF7700]
+                        text-sm"
+                      />
+                      <span>{category}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border rounded-lg p-4">
+                <h3 className="font-semibold mb-4 text-md">Price</h3>
+                <div className="space-y-4">
+                  <input
+                    type="range"
+                    min="0"
+                    max="2000"
+                    value={priceRange[1]}
+                    onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                    className="w-full accent-[#FF7700]"
+                  />
+                  <div className="flex justify-between text-sm">
+                    <span>₹{priceRange[0]}</span>
+                    <span>₹{priceRange[1]}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border rounded-lg p-4">
+                <h3 className="font-semibold mb-4">Lifestage</h3>
+                <div className="space-y-2">
+                  {["Puppy", "Adult", "Senior"].map((lifestage, index) => (
+                    <label key={index} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="lifestage"
+                        value={lifestage.toLowerCase()}
+                        className="accent-[#FF7700]"
+                      />
+                      <span>{lifestage}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border rounded-lg p-4">
+                <h3 className="font-semibold mb-4">Size</h3>
+                <div className="space-y-2">
+                  {["Small", "Medium", "Large"].map((size, index) => (
+                    <label key={index} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        name="size"
+                        value={size.toLowerCase()}
+                        className="accent-[#FF7700]"
+                      />
+                      <span>{size}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-4">Lifestage</h3>
-              <div className="space-y-2">
-                {["Puppy", "Adult", "Senior"].map((lifestage, index) => (
-                  <label key={index} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="lifestage"
-                      value={lifestage.toLowerCase()}
-                      className="accent-blue-500"
-                    />
-                    <span>{lifestage}</span>
-                  </label>
-                ))}
-              </div>
+            {/* Footer */}
+            <div className="p-6 border-t">
+              <button
+                onClick={() => {
+                  setIsFilterOpen(false);
+                  applyFilters(); // Call your filter logic here
+                }}
+                className="w-full bg-[#FFF] border-[#FF7700] border-[1px] text-[#FF7700] py-2 rounded-md hover:bg-blue-600"
+              >
+                Apply Filters
+              </button>
             </div>
-
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-4">Size</h3>
-              <div className="space-y-2">
-                {["Small", "Medium", "Large"].map((size, index) => (
-                  <label key={index} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      name="size"
-                      value={size.toLowerCase()}
-                      className="accent-blue-500"
-                    />
-                    <span>{size}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
-            <button
-              onClick={() => {
-                setIsFilterOpen(false);
-                applyFilters(); // Call your filter logic here
-              }}
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
-            >
-              Apply Filters
-            </button>
           </div>
         </div>
       )}
@@ -404,24 +410,29 @@ export default function ProductListing() {
 
       {/* Mobile Sort Modal */}
       {isSortOpen && (
-        <div className="fixed inset-0 h-90vh z-50 bg-white md:hidden">
-          <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="font-semibold">Sort By</h2>
-            <button onClick={() => setIsSortOpen(false)}>✕</button>
-          </div>
-          <div className="p-4">
-            {['Featured', 'Price: Low to High', 'Price: High to Low', 'Rating'].map((option) => (
-              <button
-                key={option}
-                className="w-full text-left p-4 hover:bg-gray-50"
-                onClick={() => handleSortChange(option.toLowerCase())}
-              >
-                {option}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 ">
+          <div className="bg-white w-11/12 max-w-sm p-6 rounded-lg shadow-lg">
+            <div className="flex items-center justify-between mb-4 border-b pb-2">
+              <h2 className="font-semibold text-md">Sort By</h2>
+              <button onClick={() => setIsSortOpen(false)} className="text-gray-500 hover:text-gray-800">
+                ✕
               </button>
-            ))}
+            </div>
+            <div>
+              {["Featured", "Price: Low to High", "Price: High to Low", "Rating"].map((option) => (
+                <button
+                  key={option}
+                  className="w-full text-left p-4 hover:bg-gray-50"
+                  onClick={() => handleSortChange(option.toLowerCase())}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
+
     </div>
   );
 }

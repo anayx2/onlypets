@@ -98,6 +98,7 @@ export default function ProductPage() {
                             className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
                             onClick={() => setIsFullscreen(true)}
                         >
+
                             <Image
                                 src={product.images[selectedImage]}
                                 alt={product.name}
@@ -260,8 +261,8 @@ export default function ProductPage() {
                                 ADD TO BAG
                             </Button>
                             <Button variant="outline" className="w-full border-[1px] border-[#552C7B] text-[#552C7B]">
-                                <Heart className="mr-2 h-4 w-4" />
-                                Add to Wishlist
+                                {/* <Heart className="mr-2 h-4 w-4" /> */}
+                                Quick buy
                             </Button>
                         </div>
 
@@ -316,6 +317,7 @@ export default function ProductPage() {
                         <X className="h-8 w-8" />
                     </button>
                     <div className="relative h-[90vh] w-[90vw]">
+
                         <Image
                             src={product.images[selectedImage]}
                             alt={product.name}
