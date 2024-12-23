@@ -269,8 +269,8 @@ export default function ProductListing() {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="font-medium text-sm mb-2 text-[12px] md:text-sm lg:text-sm">{product.name}</h3>
-                <p className="text-sm text-gray-500 mb-2">{product.weight}</p>
+                <h3 className="font-medium text-sm mb-1 text-[12px] md:text-sm lg:text-sm">{product.name}</h3>
+                <p className="text-[12px] md:text-sm lg:text-sm text-gray-500 mb-2">{product.weight}</p>
                 <div className="flex items-center gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -283,13 +283,13 @@ export default function ProductListing() {
                   ))}
                 </div>
                 <div className="flex flex-col mb-4">
-                  <span className="text-[11px] md:text-base lg:text-base text-green-600">
+                  <span className="text-[12px] md:text-base lg:text-base text-green-600">
                     {product.discount}% off
                   </span>
                   <span className='flex gap-2 items-center'>
 
-                    <span className="font-semibold text-[12px] md:text-base lg:text-base">₹{product.salePrice}</span>
-                    <span className="text-[12px] md:text-sm lg:text-sm text-gray-500 line-through">
+                    <span className="font-semibold text-[15px] md:text-base lg:text-base">₹{product.salePrice}</span>
+                    <span className="text-[15px] md:text-sm lg:text-sm text-gray-500 line-through">
                       ₹{product.originalPrice}
                     </span>
                   </span>
