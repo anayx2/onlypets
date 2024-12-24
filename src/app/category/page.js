@@ -310,12 +310,12 @@ export default function ProductListing() {
           <div className="bg-white w-11/12 max-w-md max-h-[90vh] rounded-lg shadow-lg flex flex-col" >
             {/* Header */}
             <div className="flex justify-end p-5 ">
-              {/* <button
+              <button
                 onClick={() => setIsFilterOpen(false)}
                 className="text-gray-500 hover:text-gray-800"
               >
                 ✕
-              </button> */}
+              </button>
             </div>
 
             {/* Scrollable Content */}

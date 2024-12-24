@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { Router } from "next/router";
+import { Input } from "./ui/input";
 
 // Menu items defined in an array
 const menuItems = [
@@ -58,7 +59,7 @@ const Navbar1 = () => {
 
           {/* Desktop Search Bar */}
           <div className="hidden flex-1 max-w-2xl mx-8 md:flex items-center relative border-gray-400 border-[1px] rounded-xl">
-            <input
+            <Input
               type="search"
               placeholder="Search.."
               className="w-full pl-4 pr-10 rounded-xl border-gray-600"

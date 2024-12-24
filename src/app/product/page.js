@@ -1,22 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { Heart, Star, Tag, X } from 'lucide-react';
+import { BadgePercent, Heart, Minus, Plus, Star, Tag, X } from 'lucide-react';
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"; // Update with your component paths
+// import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"; // Update with your component paths
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import BestSeller from "@/components/Homepage/BestSeller";
+import Link from "next/link";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const product = {
     id: 6,
     name: "Pedigree Meat Jerky Barbecued Chicken Adult Dog Meaty Treat",
+    category: "Dogs/Cats",
     weight: "80 gm",
     images: [
         "/topproducts/p6.jpg",
@@ -45,64 +50,100 @@ const product = {
     ],
 };
 
-
-const couponsData = [
+const offers = [
     {
-        brand: "Farmina",
-        discount: "Upto 50% OFF",
-        code: "COUPON50",
-        description: "Applicable in dog & Cat Food",
-        bgColor: "bg-gradient-to-tr from-red-700 to-red-400",
-        textColor: "text-yellow-300"
+        price: "1,259",
+        discount: "10%",
+        condition: "on your first app purchase",
+        code: "APP10",
+        minimumPurchase: null
     },
     {
-        brand: "Royal Canin",
-        discount: "Upto 40% OFF",
-        code: "ROYAL40",
-        description: "Valid on all products",
-        bgColor: "bg-gradient-to-tr from-green-700 to-green-300",
-        textColor: "text-green-800"
+        price: "1,119",
+        discount: "20%",
+        condition: "on minimum purchase of 4599/-",
+        code: "FLAT20",
+        minimumPurchase: 4599
     },
     {
-        brand: "Pedigree",
-        discount: "Upto 30% OFF",
-        code: "PED30",
-        description: "On dry dog food",
-        bgColor: "bg-gradient-to-tr from-yellow-600 to-yellow-300",
-        textColor: "text-yellow-800"
+        price: "1,189",
+        discount: "15%",
+        condition: "on minimum purchase of 2999/-",
+        code: "FLAT15",
+        minimumPurchase: 2999
     },
     {
-        brand: "Whiskas",
-        discount: "Upto 45% OFF",
-        code: "WHISK45",
-        description: "On cat food items",
-        bgColor: "bg-gradient-to-tr from-purple-700 to-purple-300",
-        textColor: "text-purple-800"
+        price: "1,259",
+        discount: "10%",
+        condition: "on minimum purchase of 1999/-",
+        code: "FLAT10",
+        minimumPurchase: 1999
     }
 ];
+const variants = [
+    {
+        name: '2 x 750 ml',
+        price: 79,
+        originalPrice: null,
+        value: 'pack2',
+    },
+    {
+        name: '750 ml',
+        price: 40,
+        originalPrice: null,
+        value: 'single',
+    },
+    // Add more variants as needed
+];
+function Benefit({ title, description, icon }) {
+    return (
+        <div className="flex gap-3 items-center">
+            <div className="w-12 h-12 flex items-center justify-center bg-green-50 rounded-full">
+                {/* Placeholder for benefit icon */}
 
+                <img src={icon}
+                    alt="cat"
+                    className="w-10 h-10"
+                />            </div>
+            <div>
+                <h3 className="font-medium text-[1.2em] text-gray-900">{title}</h3>
+                <p className="text-sm text-gray-600">{description}</p>
+            </div>
+        </div>
+    )
+}
 
 export default function ProductPage() {
     const [selectedSize, setSelectedSize] = useState(80);
     const [selectedImage, setSelectedImage] = useState(0);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [selectedValue, setSelectedValue] = useState("pack2");
+
+    const handleSelect = (value) => {
+        setSelectedValue(value);
+    };
+    const increment = () => setQuantity((prev) => prev + 1);
+    const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+    const handleUpdateQuantity = () => {
+        updateQuantity(id, quantity);
+    };
 
     return (
         <>
             <div className="container max-w-7xl mx-auto px-4 py-8">
                 <div className="grid md:grid-cols-2 gap-8 ">
                     <div className="space-y-4 rounded-lg md:border-gray-300 md:border-[1px] lg:border-gray-300 lg:border-[1px] p-5"
-                        style={{ height: "fit-content" }}>
+                        style={{ height: "" }}>
                         <div
                             className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
                             onClick={() => setIsFullscreen(true)}
                         >
-
                             <Image
                                 src={product.images[selectedImage]}
                                 alt={product.name}
-                                className="object-cover"
+                                className="object-cover h-50"
                                 fill
                                 priority
                             />
@@ -126,136 +167,82 @@ export default function ProductPage() {
                         </div>
                     </div>
 
-                    <div className="space-y-6">
-                        <div>
-                            <h1 className="text-3xl font-bold">{product.name}</h1>
-                            <div className="text-sm text-gray-500 mt-2">by {product.brand}</div>
-                            <div className="flex items-center mt-4">
-                                <span className="text-2xl font-semibold">INR {product.salePrice}</span>
-                                <span className="text-sm text-gray-500 ml-2 line-through">
-                                    INR {product.originalPrice}
-                                </span>
-                                <span className="ml-2 text-green-600 text-sm">
-                                    ({product.discount}% OFF)
+                    <div className="max-w-2xl lg:p-4 space-y-6">
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                    {product.category}
                                 </span>
                             </div>
-                            <div className="flex items-center mt-2">
-                                <span className="flex items-center text-yellow-500">
-                                    {[...Array(5)].map((_, index) => (
-                                        <Star
-                                            key={index}
-                                            fill={index < Math.round(product.rating) ? "#FFD700" : "none"}
-                                        />
-                                    ))}
-                                </span>
-                                <span className="ml-2 text-gray-600">{product.rating} Stars</span>
-                            </div>
+                            <h1 className="text-xl font-medium text-gray-900">
+                                {product.name}
+                            </h1>
                         </div>
-                        <div>
-                            <h2 className="text-sm font-medium mb-4">Size/Weight</h2>
-                            <div className="flex gap-2">
-                                {[80, 100, 120, 150].map((size) => (
-                                    <button
-                                        key={size}
-                                        onClick={() => setSelectedSize(size)}
-                                        className={`w-12 h-12 rounded-full border ${selectedSize === size ? "bg-black text-white" : "hover:border-black"
-                                            }`}
-                                    >
-                                        {size}
-                                    </button>
-                                ))}
+
+                        <div className="space-y-4">
+                            <ScrollArea className="w-full whitespace-nowrap ">
+                                {/* <div className=""> */}
+                                <h2 className="text-sm font-medium text-gray-700 mb-2">Select Unit</h2>
+                                <div className="flex gap-4 overflow-x-auto">
+                                    {variants.map((variant) => (
+                                        <div
+                                            key={variant.value}
+                                            className={`w-[150px] relative flex flex-col p-2 border rounded-lg cursor-pointer m-1 transition-all ${selectedValue === variant.value
+                                                ? 'border-[#FF7700] m-1 shadow-lg ring-1 ring-[#FF7700]'
+                                                : ''
+                                                }`}
+                                            onClick={() => handleSelect(variant.value)}
+                                        >
+                                            <span className="font-medium">{variant.name}</span>
+                                            <span className="text-sm text-gray-600">
+                                                ₹{variant.price}
+                                                {variant.originalPrice && (
+                                                    <span className="line-through"> MRP ₹{variant.originalPrice}</span>
+                                                )}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                                {/* </div> */}
+                            </ScrollArea>
+
+
+                            <div className="flex items-center justify-start gap-2">
+                                <Button variant="outline" size="icon" className="h-8 w-8"
+                                    onClick={decrement} aria-label="Decrease quantity">
+                                    <Minus className="h-4 w-4" />
+                                    <span className="sr-only">Decrease quantity</span>
+                                </Button>
+                                <span className="w-8 text-center">{quantity}</span>
+                                <Button variant="outline" size="icon" className="h-8 w-8"
+                                    onClick={increment} aria-label="Increase quantity"
+                                >
+                                    <Plus className="h-4 w-4" />
+                                    <span className="sr-only">Increase quantity</span>
+                                </Button>
                             </div>
+
+                            <p className="text-xs text-gray-500">(Inclusive of all taxes)</p>
                         </div>
                         <div className="space-y-2">
-                            <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">
-                                Quantity
-                            </label>
-                            <select
-                                id="quantity"
-                                value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#552C7B]"
-                            >
-                                {[...Array(20)].map((_, i) => (
-                                    <option key={i + 1} value={i + 1}>
-                                        {String(i + 1).padStart(2, '0')}
-                                    </option>
-                                ))}
-                            </select>
+                            {offers.map((offer, index) => (
+                                <div key={index} className="flex items-center gap-2">
+                                    <div className="mt-1 flex item-center">
+                                        <BadgePercent />                                    </div>
+                                    <div className="flex flex-col ">
+                                        <p className="mb-0">
+                                            Get this for INR {offer.price}
+                                        </p>
+                                        <p className="mb-0">
+                                            Flat <span className="text-red-500">{offer.discount} Off</span> {offer.condition}
+                                        </p>
+                                        <p className="mb-0">
+                                            Code: <span className="font-semibold">{offer.code}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="pt-6 border-t ">
-                            <p className="text-sm font-medium text-gray-700 mb-3">Share</p>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, '_blank')}
-                                    className="text-gray-600 hover:text-gray-900"
-                                    aria-label="Share on WhatsApp"
-                                >
-                                    <img width="44" height="44" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1" />
-                                </button>
-                                <button
-                                    onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                                    className="text-gray-600 hover:text-gray-900"
-                                    aria-label="Share on Facebook"
-                                >
-                                    <img width="40" height="40" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new" />                                </button>
-                                <button
-                                    onClick={() => window.open(`https://x.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                                    className="text-gray-600 hover:text-gray-900"
-                                    aria-label="Share on X"
-                                >
-                                    <img width="35" height="435" src="https://img.icons8.com/ios-filled/50/twitterx--v1.png" alt="twitterx--v1" />                                </button>
-                                <button
-                                    onClick={() => window.open(`https://www.instagram.com/`, '_blank')}
-                                    className="text-gray-600 hover:text-gray-900"
-                                    aria-label="Share on Instagram"
-                                >
-                                    <img width="40" height="40" src="https://img.icons8.com/cute-clipart/64/instagram-new.png" alt="instagram-new" />                                </button>
-                            </div>
-                        </div>
-                        <div className="space-y-4">
-
-                            {/* Available Coupons */}
-                            <Carousel
-                                opts={{
-                                    align: "start",
-                                    loop: true
-                                }}
-                                className="w-full"
-                            >
-                                <CarouselContent className="-ml-2 md:-ml-4">
-                                    {couponsData.map((coupon, index) => (
-                                        <CarouselItem key={index} className=" w-[1rem] pl-2 md:pl-4 md:basis-1/3 basis-1/2">
-                                            <div className={`${coupon.bgColor} p-4 rounded-lg h-full`}>
-                                                <div className="flex justify-between items-start flex-col h-full">
-                                                    <div>
-                                                        <p className={` font-extrabold ${coupon.textColor}`}>{coupon.discount}</p>
-                                                    </div>
-                                                    <div className={`flex items-center flex-wrap gap-2 mt-4`}>
-                                                        <Tag className="h-5 w-5 text-white" />
-                                                        <span className={`text-sm font-medium text-white`}>
-                                                            {coupon.code}
-                                                        </span>
-                                                        {/* <button
-                                                            onClick={() => {
-                                                                navigator.clipboard.writeText(coupon.code);
-                                                            }}
-                                                            className="text-sm font-medium text-gray-400 hover:text-gray-600"
-                                                        >
-                                                            Copy
-                                                        </button> */}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </CarouselItem>
-                                    ))}
-                                </CarouselContent>
-                                {/* <CarouselPrevious className="hidden md:flex" />
-                                <CarouselNext className="hidden md:flex" /> */}
-                            </Carousel>
-
-                        </div>
-
                         <div className="space-y-4">
                             <Button className="w-full bg-[#552C7B] text-white">
                                 ADD TO BAG
@@ -266,43 +253,63 @@ export default function ProductPage() {
                             </Button>
                         </div>
 
-                        <Accordion type="single" defaultValue="description" collapsible className="w-full">
-                            <AccordionItem value="description">
-                                <AccordionTrigger>DESCRIPTION</AccordionTrigger>
-                                <AccordionContent>
-                                    <p>{product.description}</p>
-                                    <div className="mt-4">
-                                        <h3 className="font-semibold">Size & Weight</h3>
-                                        <ul className="mt-2 space-y-1">
-                                            <li>Weight - {product.weight}</li>
-                                            <li>Brand - {product.brand}</li>
-                                        </ul>
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
 
-                            <AccordionItem value="reviews">
-                                <AccordionTrigger>REVIEWS</AccordionTrigger>
-                                <AccordionContent>
-                                    {product.reviews.map((review, index) => (
-                                        <div key={index} className="mb-4">
-                                            <div className="flex items-center justify-between">
-                                                <h4 className="font-semibold">{review.user}</h4>
-                                                <span className="flex items-center text-yellow-500">
-                                                    {[...Array(5)].map((_, i) => (
-                                                        <Star
-                                                            key={i}
-                                                            fill={i < review.rating ? "#FFD700" : "none"}
-                                                        />
-                                                    ))}
-                                                </span>
-                                            </div>
-                                            <p className="text-gray-600 mt-1">{review.comment}</p>
+                        <div className="space-y-6 pt-6 border-t">
+                            <Accordion type="single" defaultValue="description" collapsible className="w-full">
+                                <AccordionItem value="description">
+                                    <AccordionTrigger>DESCRIPTION</AccordionTrigger>
+                                    <AccordionContent>
+                                        <p>{product.description}</p>
+                                        <div className="mt-4">
+                                            <h3 className="font-semibold">Size & Weight</h3>
+                                            <ul className="mt-2 space-y-1">
+                                                <li>Weight - {product.weight}</li>
+                                                <li>Brand - {product.brand}</li>
+                                            </ul>
                                         </div>
-                                    ))}
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                                <AccordionItem value="reviews">
+                                    <AccordionTrigger>REVIEWS</AccordionTrigger>
+                                    <AccordionContent>
+                                        {product.reviews.map((review, index) => (
+                                            <div key={index} className="mb-4">
+                                                <div className="flex items-center justify-between">
+                                                    <h4 className="font-semibold text-[1.2em]">{review.user}</h4>
+                                                    <span className="flex items-center text-yellow-500">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <Star
+                                                                key={i}
+                                                                fill={i < review.rating ? "#FFD700" : "none"}
+                                                            />
+                                                        ))}
+                                                    </span>
+                                                </div>
+                                                <p className="text-gray-600 text-sm mt-1">{review.comment}</p>
+                                            </div>
+                                        ))}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </div>
+                        <div className="space-y-6 pt-6 ">
+                            <div className="space-y-6 pt-6">
+                                <h2 className="font-medium text-[1.6em] text-gray-900">Why shop from us?</h2>
+                                <div className="space-y-4">
+                                    <Benefit
+                                        icon={'/cat_profile.gif'}
+                                        title="Superfast Delivery"
+                                        description="Get your order delivered to your doorstep at the earliest from dark stores near you"
+                                    />
+                                    <Benefit
+                                        icon={'/best-offer.gif'}
+                                        title="Best Prices & Offers"
+                                        description="Best price destination with offers directly from the manufacturers"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -317,7 +324,6 @@ export default function ProductPage() {
                         <X className="h-8 w-8" />
                     </button>
                     <div className="relative h-[90vh] w-[90vw]">
-
                         <Image
                             src={product.images[selectedImage]}
                             alt={product.name}
@@ -347,11 +353,9 @@ export default function ProductPage() {
                     </div>
                 </div>
             )}
-
-            <div className="flex flex-col jusitfy-center">
+            <div className="flex flex-col justify-center">
                 <BestSeller />
             </div>
         </>
     );
 }
-
