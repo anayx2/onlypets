@@ -17,6 +17,7 @@ import Link from "next/link";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRouter } from "next/navigation";
 
 const product = {
     id: 6,
@@ -120,6 +121,11 @@ export default function ProductPage() {
     const [quantity, setQuantity] = useState(1);
     const [selectedValue, setSelectedValue] = useState("pack2");
 
+    const router = useRouter();
+
+    const handleRedirect = () => {
+        router.push("/checkout"); // Redirect to /checkout
+    };
     const handleSelect = (value) => {
         setSelectedValue(value);
     };
@@ -247,7 +253,9 @@ export default function ProductPage() {
                             <Button className="w-full bg-[#552C7B] text-white">
                                 ADD TO BAG
                             </Button>
-                            <Button variant="outline" className="w-full border-[1px] border-[#552C7B] text-[#552C7B]">
+                            <Button variant="outline" className="w-full border-[1px] border-[#552C7B] text-[#552C7B]"
+                                onClick={handleRedirect}
+                            >
                                 {/* <Heart className="mr-2 h-4 w-4" /> */}
                                 Quick buy
                             </Button>
