@@ -3,6 +3,7 @@
 import { Summary } from "@/components/Checkout/checkout-summary";
 import { CheckoutTimeline } from "@/components/Checkout/checkout-timeline";
 import { Completestep } from "@/components/Checkout/Complete-step";
+// import { Completestep } from "@/components/Checkout/complete-step";
 import { PaymentStep } from "@/components/Checkout/Payment-step";
 import { PersonalDetailsStep } from "@/components/Checkout/Personal-details-step";
 import { useState } from "react";

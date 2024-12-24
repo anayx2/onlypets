@@ -1,3 +1,4 @@
+'use client'
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
