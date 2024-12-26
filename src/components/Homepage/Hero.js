@@ -140,7 +140,7 @@ const Hero = () => {
                             src={"/logo.svg"}
                             width={900}
                             height={900}
-                            className="w-40 h-15"
+                            className="w-40 h-15 z-50"
                             alt="LOGO"
                         // onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
                         />
