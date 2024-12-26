@@ -137,7 +137,7 @@ const Hero = () => {
                     {/* LOGO */}
                     <Link href="/" className="flex items-center ">
                         <Image
-                            src={"/logo.png"}
+                            src={"/newLogo.png"}
                             width={900}
                             height={900}
                             className="w-40 h-15 z-50"
