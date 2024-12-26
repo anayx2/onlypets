@@ -167,7 +167,7 @@ const Hero = () => {
                 <div className='h-[80px] text-center border border-white w-full'>.....video.....</div>
                 <CategoryHero />
             </div>
-            <div className='bg-gradient-to-b from-[#fff59d] to-yellow-300 '>
+            <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '>
                 <div className="relative w-full ">
                     <div className={styles.notch} style={{ display: "flex", textAlign: "center" }}>
                         <span className='absolute top-[15%] left-[15%] text-[20px] text-[#350303] font-bold'>UNMISSABLE OFFER</span>
