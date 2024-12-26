@@ -19,7 +19,7 @@ const page = () => {
   return (
     <>
       <Hero />
-      <Category />
+      {/* <Category /> */}
       <CouponCarousel />
       <Ad />
       <ProductPage />

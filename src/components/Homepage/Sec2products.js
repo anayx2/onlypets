@@ -1,3 +1,4 @@
+
 'use client';
 import React, { useState } from 'react';
 import { Plus, Minus, ShoppingBagIcon } from "lucide-react";
@@ -75,12 +76,7 @@ const products = [
 ];
 const ProductGrid = () => {
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="text-center mb-8">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">What Are you looking for???</h1>
-                <p className="text-gray-600 text-sm sm:text-base">You cannot go wrong with these!</p>
-            </div>
-
+        <div className="container mx-auto">
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
                 <Carousel className="w-full overflow-x-auto flex gap-2">
@@ -106,14 +102,14 @@ const ProductGrid = () => {
     );
 };
 
-const ProductPage = () => {
+const Sec2products = () => {
     return (
         <div>
             <ProductGrid />
         </div>
     );
 };
-export default ProductPage;
+export default Sec2products;
 
 const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice, discount, brand }) => {
     const [quantity, setQuantity] = useState(1);
@@ -127,10 +123,10 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
     };
 
     return (
-        <div className="bg-white rounded-lg md:px-3 lg:md:px-3 w-[160px] lg:w-[auto] md:w-[auto] sm:pt-4">
+        <div className="rounded-lg md:px-3 lg:md:px-3 w-[160px] lg:w-[auto] md:w-[auto] sm:pt-4">
             <div className="p-2">
                 {/* Image Section */}
-                <div className="relative aspect-square rounded-xl sm:mb-4 shadow-sm hover:shadow-md transition-shadow border border-gray-200 mb-1">
+                <div className="relative aspect-square rounded-xl sm:mb-4 hover:shadow-md transition-shadow mb-1">
                     <Image src={image} alt={name} fill className="object-contain p-2" />
                     <div style={{ bottom: "-10%", right: "-2%" }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#71216A] text-white px-2 py-1 space-x-2 my-2">
                         <button className="p-1 rounded-full" onClick={decrement} aria-label="Decrease quantity">

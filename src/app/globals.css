@@ -42,6 +42,39 @@ p {
 a {
   @apply text-blue-600 hover:text-blue-800 transition-colors duration-300;
 }
+
+/* Styles for smaller screens */
+@media (max-width: 400px) {
+  h1 {
+    @apply text-3xl leading-snug;
+  }
+
+  h2 {
+    @apply text-2xl leading-tight;
+  }
+
+  h3 {
+    @apply text-xl leading-snug;
+  }
+
+  h4 {
+    @apply text-lg leading-normal;
+  }
+
+  h5 {
+    @apply text-base leading-relaxed;
+  }
+
+  h6 {
+    @apply text-sm leading-relaxed;
+  }
+
+  p {
+    @apply text-sm leading-relaxed;
+  }
+}
+
+/* Custom utility layer */
 @layer utilities {
   @keyframes marquee {
     0% {
@@ -56,6 +89,8 @@ a {
     animation: marquee 10s linear infinite;
   }
 }
+
+/* Base styles */
 @layer base {
   :root {
     --radius: 0.5rem;

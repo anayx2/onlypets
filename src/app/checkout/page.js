@@ -6,7 +6,10 @@ import { Completestep } from "@/components/Checkout/CompleteStep";
 // import { Completestep } from "@/components/Checkout/CompleteStep";
 import { PaymentStep } from "@/components/Checkout/Payment-step";
 import { PersonalDetailsStep } from "@/components/Checkout/Personal-details-step";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+useRouter()
 
 const MOCK_BOOKING_DETAILS = {
     totalProducts: 1,
@@ -43,12 +46,12 @@ export default function CheckoutPage() {
                         {currentStep === 2 && (
                             <PaymentStep onNext={handleNext} onBack={handleBack} />
                         )}
-                        {currentStep === 3 && (
+                        {/* {currentStep === 3 && (
                             <Completestep
                                 bookingReference="BOK-2024-001"
                                 currentStep={currentStep}  // Add this line
                             />
-                        )}
+                        )} */}
                     </div>
                     <div>
                         <Summary bookingDetails={MOCK_BOOKING_DETAILS} />

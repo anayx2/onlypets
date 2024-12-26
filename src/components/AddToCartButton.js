@@ -38,19 +38,19 @@ export default function AddToCartButton({ productId, quantity }) {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed bottom-[10%] left-1/2 transform -translate-x-1/2 flex justify-between items-center min-w-[300px] rounded-2xl p-2.5 bg-[#27AE60] text-white shadow-md z-[99]">
+        <div className="fixed bottom-[10%] gap-2 left-1/2 transform -translate-x-1/2 flex justify-between items-center rounded-2xl p-2.5 bg-[#27AE60] text-white shadow-md z-[99]">
           <div
             className="flex justify-between items-center w-full cursor-pointer"
             onClick={handleCheckout}>
             <div className="text-sm">Total Items: {getTotalItems()}</div>
-            <div className="text-sm">Total Price: ₹{getTotalPrice()}</div>
-            <div>
+            {/* <div className="text-sm">Total Price: ₹{getTotalPrice()}</div> */}
+            <div >
               <ShoppingBagIcon style={{ marginRight: "5px", cursor: "pointer" }} />
             </div>
           </div>
           {/* Close Modal Button */}
           <button
-            className="absolute top-2 right-2 text-white"
+            className=" text-white"
             onClick={() => setIsModalOpen(false)}
           >
             ✕

@@ -23,10 +23,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <meta name="theme-color" content="#ff0000">
+      </meta>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar1 />
+        {/* <Navbar1 /> */}
         <CartProvider>
-
           {children}
         </CartProvider>
       </body>
