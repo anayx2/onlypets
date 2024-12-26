@@ -145,7 +145,7 @@ const Hero = () => {
                         // onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
                         />
                     </Link>
-                    <div className='flex items-center justify-end w-[95%] gap-3'>
+                    <div className='flex items-center justify-end w-[95%] gap-3 z-50'>
                         <Link href="/profile" className="flex flex-col items-center text-black">
                             <button className='p-2 bg-[#500404] rounded-full'>
                                 <User className='h-5 w-5 text-white' fill="#fff" /> </button>
