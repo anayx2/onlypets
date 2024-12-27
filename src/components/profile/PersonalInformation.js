@@ -32,9 +32,9 @@ const PersonalInformation = () => {
         <div className="max-w-3xl mx-auto p-6">
             <div className="space-y-8">
                 {personalInfoFields.map(({ label, key, type }) => (
-                    <div className="space-y-4" key={key}>
+                    <div className="space-y-1" key={key}>
                         <div className="flex items-center justify-between">
-                            <h2 className="text-xl font-semibold">{label}</h2>
+                            <h2 className="text-sm font-semibold">{label}</h2>
                             <button
                                 onClick={() => handleEdit(key)}
                                 className="text-blue-600 hover:text-blue-700 text-sm font-medium"
@@ -47,7 +47,7 @@ const PersonalInformation = () => {
                             value={info[key]}
                             onChange={(e) => setInfo({ ...info, [key]: e.target.value })}
                             disabled={editing !== key}
-                            className="w-full p-3 border rounded-md bg-gray-50"
+                            className="w-full p-2 border rounded-md bg-gray-50"
                             placeholder={label}
                         />
                     </div>
