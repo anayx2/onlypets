@@ -15,7 +15,7 @@
   /* top: 1%; */
   width: 280px;
   height: 42px;
-  background-color: #fff59d;
+  background-color: #fff;
   border-radius: 28px 28px 0 0; /* Rounded corners moved to the top */
   transform: translateX(-50%);
 }

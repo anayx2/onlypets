@@ -7,80 +7,73 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card';
 import { BadgePercent, Cat, Dog, Bird, Fish, Scissors } from 'lucide-react';
 
 const categories = [
     {
-        name: "Offer",
+        name: "All",
         id: "1",
-        icon: BadgePercent, // Reference the imported component
-        href: "#",
+        icon: BadgePercent,
+        href: "/", // Home page
     },
     {
         name: "Cat Food",
         id: "3",
-        icon: Cat, // Reference the imported component
-        href: "#",
+        icon: Cat,
+        href: "/category/cat-food",
     },
     {
         name: "Dog Beds",
         id: "4",
-        icon: Dog, // Reference the imported component
-        href: "#",
+        icon: Dog,
+        href: "/category/dog-beds",
     },
     {
         name: "Grooming",
         id: "5",
-        icon: Scissors, // Reference the imported component
-        href: "#",
+        icon: Scissors,
+        href: "/category/grooming",
     },
     {
         name: "Birds",
         id: "6",
-        icon: Bird, // Reference the imported component
-        href: "#",
+        icon: Bird,
+        href: "/category/birds",
     },
     {
         name: "Fish",
         id: "7",
-        icon: Fish, // Reference the imported component
-        href: "#",
+        icon: Fish,
+        href: "/category/fish",
     },
 ];
 
 
 const CategoryIcons = () => {
     return (
+
         <div className="w-full px-4 py-6">
-            <Carousel
-                opts={{
-                    align: "start",
-                }}
-            >
-                <CarouselContent className="-ml-4">
+            <Tabs defaultValue={categories[0].id}>
+                <TabsList className="flex justify-start overflow-x-auto h-auto bg-transparent gap-5 scrollbar-none">
                     {categories.map((category) => (
-                        <CarouselItem
+                        <TabsTrigger
                             key={category.id}
-                            className="basis-1/5 md:basis-1/4 lg:basis-1/5 flex justify-center">
-                            <div className="flex flex-col text-center items-center p-2 border-none shadow-none">
-                                <Link href={category.href} className="flex flex-col items-center text-white hover:text-white">
-                                    {/* Icon Section */}
-                                    <div className="relative aspect-square w-5 rounded-full overflow-hidden">
-                                        <category.icon className="w-full h-full text-white" /> {/* Render the icon */}
-                                    </div>
-                                    {/* Category Name */}
-                                    <span className="text-[10px] mt-1 font-medium whitespace-nowrap">
-                                        {category.name}
-                                    </span>
-                                </Link>
-                            </div>
-                        </CarouselItem>
+                            value={category.id}
+                            className="flex-shrink-0 bg-transparent hover:bg-transparent data-[state=active]:bg-transparent data-[state=active]:border-b data-[state=active]:border-white shadow-0"                        >
+                            <Link href={category.href} className="flex flex-col items-center text-white hover:text-foreground">
+                                <div className="relative flex gap-5 w-5 rounded-[1px] overflow-hidden">
+                                    <category.icon className="w-full h-full" />
+                                </div>
+                                <span className="text-[10px] mt-1 font-medium whitespace-nowrap">
+                                    {category.name}
+                                </span>
+                            </Link>
+                        </TabsTrigger>
                     ))}
-                </CarouselContent>
-                {/* <CrouselPrevious />
-                <CarouselNext /> */}
-            </Carousel>
+                </TabsList>
+            </Tabs>
         </div>
     );
 };

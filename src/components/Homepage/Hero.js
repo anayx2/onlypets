@@ -100,7 +100,9 @@
 // };
 
 // export default Hero;
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import CategoryHero from './CategoryHero'
 import { Input } from '../ui/input'
 import { Search, ShoppingCart, User } from 'lucide-react'
@@ -113,6 +115,30 @@ import Sec2products from './Sec2products'
 import { Button } from '../ui/button'
 
 const Hero = () => {
+    const placeholders = [
+        "Dog Food...",
+        "Cat Food...",
+        "Bird Food...",
+        "Fish Food..."
+        // Add more placeholder texts as needed
+    ]
+    const [placeholderIndex, setPlaceholderIndex] = useState(0)
+    const [isAnimating, setIsAnimating] = useState(false)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsAnimating(true)
+            setTimeout(() => {
+                setPlaceholderIndex((prevIndex) =>
+                    prevIndex === placeholders.length - 1 ? 0 : prevIndex + 1
+                )
+                setIsAnimating(false)
+            }, 100) // Adjust timing as needed
+        }, 2000)
+
+        return () => clearInterval(interval)
+    }, [])
+
     return (
         <>
             <div className='relative flex justify-between'>
@@ -122,7 +148,7 @@ const Hero = () => {
                     width={500}
                     height={550}
                     alt='left'
-                    
+
                 />
                 <Image
                     className='absolute top-[-50px] right-0 w-[40%] h-50 opacity-50'
@@ -153,21 +179,23 @@ const Hero = () => {
                     </div>
                 </div>
                 {/* search */}
-                <div className="flex w-[90%] items-center relative rounded-xl bg-white">
+                <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
                     <Input
                         type="search"
-                        placeholder="Search.."
-                        className="w-full rounded-xl py-6"
+                        placeholder={placeholders[placeholderIndex]}
+                        className={` border-white  w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? '-translate-y-full' : 'translate-y-0'}`}
                     />
                     <button className="absolute right-2">
                         <Search className="h-20 w-5" />
                     </button>
                 </div>
+
                 <CategoryIcons />
                 <div className='h-[80px] text-center border border-white w-full'>.....video.....</div>
                 <CategoryHero />
             </div>
-            <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '>
+            {/* <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '> */}
+            <div className=' '>
                 <div className="relative w-full ">
                     <div className={styles.notch} style={{ display: "flex", textAlign: "center" }}>
                         <span className='absolute top-[15%] left-[15%] text-[20px] text-[#350303] font-bold'>UNMISSABLE OFFER</span>
@@ -176,7 +204,7 @@ const Hero = () => {
                 <div className='p-5 pt-5 '>
                     <Sec2products />
                     <span className='w-full flex justify-center mt-5'>
-                        <Button className="bg-white text-blue-700 hover:bg-white" >See all products
+                        <Button className="bg-white mt-2 text-black hover:bg-white border-[1px] border-[#ef8427]" >See all products
                         </Button>
                     </span>
                 </div>

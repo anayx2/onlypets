@@ -84,7 +84,7 @@ const CategoryHero = () => {
                         <CarouselItem
                             key={category.id}
                             className="basis-1/3 md:basis-1/4 lg:basis-1/5 flex justify-center" >
-                            <Card className="relative overflow-hidden rounded-lg bg-gradient-to-b from-yellow-100 to-yellow-300 border-none">
+                            <Card className="relative overflow-hidden rounded-lg bg-gradient-to-b from-white to-white border-none">
                                 <div className="top-0 left-0 right-0 mx-2">
                                     <div className="bg-[#4A0404] text-white px-2 py-2 rounded-b-xl mx-auto w-fit text-[8px] font-semibold">
                                         {category.discount}
