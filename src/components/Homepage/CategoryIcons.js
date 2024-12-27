@@ -56,7 +56,7 @@ const CategoryIcons = () => {
 
         <div className="w-full px-4 py-6">
             <Tabs defaultValue={categories[0].id}>
-                <TabsList className="flex justify-start overflow-x-auto h-auto bg-transparent gap-5 scrollbar-none">
+                <TabsList className="flex justify-start overflow-x-auto h-auto bg-transparent gap-5 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                     {categories.map((category) => (
                         <TabsTrigger
                             key={category.id}
