@@ -50,7 +50,7 @@ export function Footer() {
     return (
         <footer className="bg-[#0A0F1C] text-white py-16 rounded-t-3xl ">
             <div className="container mx-auto px-6 md:px-12">
-                <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-12 justify-items-center">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12 justify-items-center">
                     {/* Menu Sections */}
                     {footerMenus.map((menu, index) => (
                         <div key={index}>
