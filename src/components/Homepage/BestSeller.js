@@ -82,7 +82,6 @@ const products = [
 ];
 
 
-
 const ProductCard = ({ image, name, weight, rating, originalPrice, salePrice, discount, brand }) => {
     const [quantity, setQuantity] = useState(1);
 

@@ -54,14 +54,14 @@ const categories = [
 const CategoryIcons = () => {
     return (
 
-        <div className="w-full px-4 py-6">
-            <Tabs defaultValue={categories[0].id}>
-                <TabsList className="flex justify-start overflow-x-auto h-auto bg-transparent gap-5 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
+        <div className="w-full px-4 py-6 ">
+            <Tabs defaultValue={categories[0].id} >
+                <TabsList className="flex shadow-md justify-start overflow-x-auto h-auto bg-transparent gap-2 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                     {categories.map((category) => (
                         <TabsTrigger
                             key={category.id}
                             value={category.id}
-                            className="flex-shrink-0 bg-transparent hover:bg-transparent data-[state=active]:bg-transparent data-[state=active]:border-b data-[state=active]:border-white shadow-0"                        >
+                            className="flex-shrink-0 bg-transparent data-[state=active]:shadow-none hover:bg-transparent data-[state=active]:bg-transparent data-[state=active]:border-b data-[state=active]:border-white shadow-0"                        >
                             <Link href={category.href} className="flex flex-col items-center text-white hover:text-foreground">
                                 <div className="relative flex gap-5 w-5 rounded-[1px] overflow-hidden">
                                     <category.icon className="w-full h-full" />

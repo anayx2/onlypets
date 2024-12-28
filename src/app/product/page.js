@@ -9,13 +9,12 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 // import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"; // Update with your component paths
-
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import BestSeller from "@/components/Homepage/BestSeller";
-import Link from "next/link";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+// import Link from "next/link";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRouter } from "next/navigation";
 
@@ -140,7 +139,7 @@ export default function ProductPage() {
         <>
             <div className="container max-w-7xl mx-auto px-4 py-8">
                 <div className="grid md:grid-cols-2 gap-8 ">
-                    <div className="space-y-4 rounded-lg md:border-gray-300 md:border-[1px] lg:border-gray-300 lg:border-[1px] p-5"
+                    <div className="space-y-4 rounded-lg md:border-gray-300 md:border-[1px] lg:border-gray-300 lg:border-[1px] p-1 shadow-lg "
                         style={{ height: "" }}>
                         <div
                             className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
@@ -173,8 +172,8 @@ export default function ProductPage() {
                         </div>
                     </div>
 
-                    <div className="max-w-2xl lg:p-4 space-y-6">
-                        <div className="space-y-2">
+                    <div className="max-w-2xl lg:p-4 space-y-6 ">
+                        <div className="space-y-2 ">
                             <div className="flex items-center gap-2">
                                 <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                                     {product.category}
@@ -231,23 +230,35 @@ export default function ProductPage() {
                             <p className="text-xs text-gray-500">(Inclusive of all taxes)</p>
                         </div>
                         <div className="space-y-2">
-                            {offers.map((offer, index) => (
-                                <div key={index} className="flex items-center gap-2">
-                                    <div className="mt-1 flex item-center">
-                                        <BadgePercent />                                    </div>
-                                    <div className="flex flex-col ">
-                                        <p className="mb-0">
-                                            Get this for INR {offer.price}
-                                        </p>
-                                        <p className="mb-0">
-                                            Flat <span className="text-red-500">{offer.discount} Off</span> {offer.condition}
-                                        </p>
-                                        <p className="mb-0">
-                                            Code: <span className="font-semibold">{offer.code}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
+                            <Accordion type="single" collapsible className="space-y-2">
+                                <AccordionItem value="offers">
+                                    <AccordionTrigger className="font-medium">
+                                        View Offers
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="space-y-4">
+                                            {offers.map((offer, index) => (
+                                                <div key={index} className="flex items-center gap-4">
+                                                    <div className="mt-1 flex items-center">
+                                                        <BadgePercent className="text-yellow-500" />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <p className="mb-0">
+                                                            Get this for INR {offer.price}
+                                                        </p>
+                                                        <p className="mb-0">
+                                                            Flat <span className="text-red-500">{offer.discount} Off</span> {offer.condition}
+                                                        </p>
+                                                        <p className="mb-0">
+                                                            Code: <span className="font-semibold">{offer.code}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
                         </div>
                         <div className="space-y-4">
                             <Button className="w-full bg-[#552C7B] text-white">
