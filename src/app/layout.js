@@ -24,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="theme-color" content="#c62828"></meta>
+      <meta name="theme-color" content="#971b1b"></meta>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <CartProvider>
