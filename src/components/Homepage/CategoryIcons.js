@@ -22,37 +22,37 @@ const categories = [
         name: "Cat Food",
         id: "3",
         icon: Cat,
-        href: "/category/cat-food",
+        href: "/",
     },
     {
         name: "Dog Food",
         id: "4",
         icon: Dog,
-        href: "/category/dog-beds",
+        href: "/",
     },
     {
         name: "Grooming",
         id: "5",
         icon: Scissors,
-        href: "/category/grooming",
+        href: "/",
     },
     {
         name: "Birds",
         id: "6",
         icon: Bird,
-        href: "/category/birds",
+        href: "/",
     },
     {
         name: "Fish",
         id: "7",
         icon: Fish,
-        href: "/category/fish",
+        href: "/",
     },
     {
         name: "Beds",
         id: "4",
         icon: Dog,
-        href: "/category/dog-beds",
+        href: "/",
     },
 ];
 

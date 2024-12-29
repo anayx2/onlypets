@@ -100,116 +100,248 @@
 // };
 
 // export default Hero;
-'use client'
 
-import React, { useEffect, useState } from 'react'
-import CategoryHero from './CategoryHero'
-import { Input } from '../ui/input'
-import { Search, ShoppingCart, User } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
-import CategoryIcons from './CategoryIcons'
-import styles from '@/styles/hero.module.css'
-import ProductPage from "@/components/Homepage/LookingFor";
-import Sec2products from './Sec2products'
-import { Button } from '../ui/button'
+
+
+
+
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import CategoryHero from "./CategoryHero";
+// import { Input } from "../ui/input";
+// import { Search, ShoppingCart, User } from "lucide-react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import CategoryIcons from "./CategoryIcons";
+// import styles from "@/styles/hero.module.css";
+// import ProductPage from "@/components/Homepage/LookingFor";
+// import Sec2products from "./Sec2products";
+// import { Button } from "../ui/button";
+
+// const Hero = () => {
+//     const placeholders = [
+//         "Dog Food...",
+//         "Cat Food...",
+//         "Bird Food...",
+//         "Fish Food..."
+//     ];
+
+//     const [placeholderIndex, setPlaceholderIndex] = useState(0);
+//     const [prevPlaceholder, setPrevPlaceholder] = useState(placeholders[0]);
+//     const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholders[0]);
+
+//     useEffect(() => {
+//         const interval = setInterval(() => {
+//             setPrevPlaceholder(currentPlaceholder);
+//             const nextIndex = (placeholderIndex + 1) % placeholders.length;
+//             setPlaceholderIndex(nextIndex);
+//             setCurrentPlaceholder(placeholders[nextIndex]);
+//         }, 3000);
+
+//         return () => clearInterval(interval);
+//     }, [placeholderIndex, currentPlaceholder]);
+
+//     return (
+//         <>
+//             <div className="relative flex justify-between">
+//                 <Image
+//                     className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50 "
+//                     src={"/left.svg"}
+//                     width={500}
+//                     height={550}
+//                     alt="left"
+//                 />
+//                 <Image
+//                     className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50"
+//                     src={"/right.svg"}
+//                     width={100}
+//                     alt="left"
+//                     height={200}
+//                 />
+//             </div>
+//             <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2 ">
+//                 <div className=" flex flex-end items-center w-full w-[90%] p-2">
+//                     {/* LOGO */}
+//                     <Link href="/" className="flex items-center ">
+//                         <Image
+//                             src={"/newLogo.png"}
+//                             width={900}
+//                             height={900}
+//                             className="w-40 h-15 z-50"
+//                             alt="LOGO"
+//                         // onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
+//                         />
+//                     </Link>
+//                     <div className="flex items-center justify-end w-[95%] gap-3 z-50">
+//                         <Link
+//                             href="/profile"
+//                             className="flex flex-col items-center text-black"
+//                         >
+//                             <button className="p-2 bg-[#500404] rounded-full">
+//                                 <User className="h-5 w-5 text-white" fill="#fff" />{" "}
+//                             </button>
+//                         </Link>
+//                     </div>
+//                 </div>
+//                 {/* search */}
+//                 <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
+//                     {/* <Input
+//                         type="search"
+//                         placeholder={placeholders[placeholderIndex]}
+//                         className={` border-white  w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? "-translate-y-full" : "translate-y-0"
+//                             }`}
+//                     /> */}
+
+//                     <div className="relative h-16 overflow-hidden">
+//                         <input
+//                             type="search"
+//                             className="w-full rounded-xl py-6 border-white"
+//                             placeholder={prevPlaceholder}
+//                         />
+//                         <div
+//                             className="absolute inset-0 animate-slide-up pointer-events-none"
+//                             key={currentPlaceholder}
+//                         >
+//                             <input
+//                                 type="search"
+//                                 className="w-full rounded-xl py-6 border-white"
+//                                 placeholder={currentPlaceholder}
+//                             />
+//                         </div>
+//                     </div>
+//                     <button className="absolute right-2">
+//                         <Search className="h-20 w-5" />
+//                     </button>
+//                 </div>
+
+//                 <CategoryIcons />
+//             </div>
+//             {/* <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '> */}
+//         </>
+//     );
+// };
+
+// export default Hero;
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { Input } from "../ui/input";
+import { Search, ShoppingCart, User } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import CategoryIcons from "./CategoryIcons";
+import styles from "@/styles/hero.module.css";
 
 const Hero = () => {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [placeholderIndex, setPlaceholderIndex] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+
     const placeholders = [
         "Dog Food...",
         "Cat Food...",
         "Bird Food...",
-        "Fish Food..."
-        // Add more placeholder texts as needed
-    ]
-    const [placeholderIndex, setPlaceholderIndex] = useState(0)
-    const [isAnimating, setIsAnimating] = useState(false)
+        "Fish Food...",
+    ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setIsAnimating(true)
+            setIsAnimating(true);
             setTimeout(() => {
                 setPlaceholderIndex((prevIndex) =>
                     prevIndex === placeholders.length - 1 ? 0 : prevIndex + 1
-                )
-                setIsAnimating(false)
-            }, 100) // Adjust timing as needed
-        }, 2000)
+                );
+                setIsAnimating(false);
+            }, 100);
+        }, 2000);
 
-        return () => clearInterval(interval)
-    }, [])
+        return () => clearInterval(interval);
+    }, []);
 
     return (
-        <>
-            <div className='relative flex justify-between'>
+        <div
+            className={`sticky top-0 z-50 transition-all duration-300 ${scrollPosition > 100 ? "h-[120px]" : "h-auto"
+                }`}
+        >
+            <div
+                className={`relative flex justify-between transition-opacity duration-300 ${scrollPosition > 100 ? "opacity-0 h-0" : "opacity-100"
+                    }`}
+            >
                 <Image
-                    className='absolute left-0 top-[-100px] w-[70%] h-60 opacity-50 '
-                    src={'/left.svg'}
+                    className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50"
+                    src={"/left.svg"}
                     width={500}
                     height={550}
-                    alt='left'
-
+                    alt="left"
                 />
                 <Image
-                    className='absolute top-[-50px] right-0 w-[40%] h-50 opacity-50'
-                    src={'/right.svg'}
+                    className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50"
+                    src={"/right.svg"}
                     width={100}
-                    alt='left'
+                    alt="left"
                     height={200}
                 />
             </div>
-            <div className='bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2 pb-10'>
-                <div className=' flex flex-end items-center w-full w-[90%] p-2 mb-2'>
-                    {/* LOGO */}
-                    <Link href="/" className="flex items-center ">
+            <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2"
+            >
+                <div
+                    className={`flex flex-end items-center w-full w-[90%] p-2 transition-opacity duration-300 ${scrollPosition > 100
+                        ? "opacity-0 h-0 overflow-hidden"
+                        : "opacity-100"
+                        }`}
+                >
+                    <Link href="/" className="flex items-center">
                         <Image
                             src={"/newLogo.png"}
                             width={900}
                             height={900}
                             className="w-40 h-15 z-50"
                             alt="LOGO"
-                        // onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
                         />
                     </Link>
-                    <div className='flex items-center justify-end w-[95%] gap-3 z-50'>
-                        <Link href="/profile" className="flex flex-col items-center text-black">
-                            <button className='p-2 bg-[#500404] rounded-full'>
-                                <User className='h-5 w-5 text-white' fill="#fff" /> </button>
+                    <div className="flex items-center justify-end w-[95%] gap-3 z-50">
+                        <Link
+                            href="/profile"
+                            className="flex flex-col items-center text-black"
+                        >
+                            <button className="p-2 bg-[#500404] rounded-full">
+                                <User className="h-5 w-5 text-white" fill="#fff" />
+                            </button>
                         </Link>
                     </div>
                 </div>
-                {/* search */}
-                <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
-                    <Input
-                        type="search"
-                        placeholder={placeholders[placeholderIndex]}
-                        className={` border-white  w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? '-translate-y-full' : 'translate-y-0'}`}
-                    />
-                    <button className="absolute right-2">
-                        <Search className="h-20 w-5" />
-                    </button>
-                </div>
 
-                <CategoryIcons />
-                <div className='h-[80px] text-center border border-white w-full'>.....video.....</div>
-                <CategoryHero />
-            </div>
-            {/* <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '> */}
-            <div className=' '>
-                <div className="relative w-full ">
-                    <div className={styles.notch} style={{ display: "flex", textAlign: "center" }}>
-                        <span className='absolute top-[15%] left-[15%] text-[20px] text-[#350303] font-bold'>UNMISSABLE OFFER</span>
+                {/* Search and CategoryIcons - always visible */}
+                <div
+                    className={`flex flex-col w-full items-center transition-all duration-300 ${scrollPosition > 100 ? "py-2" : "py-0"
+                        }`}
+                >
+                    <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
+                        <Input
+                            type="search"
+                            placeholder={placeholders[placeholderIndex]}
+                            className={`border-white w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? "-translate-y-full" : "translate-y-0"
+                                }`}
+                        />
+                        <button className="absolute right-2">
+                            <Search className="h-20 w-5" />
+                        </button>
                     </div>
+                    <CategoryIcons />
                 </div>
-                <div className='p-5 pt-5 '>
-                    <Sec2products />
-                    <span className='w-full flex justify-center mt-5'>
-                        <Button className="bg-white mt-2 text-black hover:bg-white border-[1px] border-[#ef8427]" >See all products
-                        </Button>
-                    </span>
-                </div>
-            </div >
-        </>)
-}
+            </div>
+        </div >
+    );
+};
 
-export default Hero
+export default Hero;
