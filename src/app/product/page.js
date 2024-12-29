@@ -119,6 +119,8 @@ export default function ProductPage() {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const [selectedValue, setSelectedValue] = useState("pack2");
+    const [showQuantityControls, setShowQuantityControls] = useState(false);
+
 
     const router = useRouter();
 
@@ -129,8 +131,19 @@ export default function ProductPage() {
         setSelectedValue(value);
     };
     const increment = () => setQuantity((prev) => prev + 1);
-    const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+    const decrement = () => {
+        const newQuantity = quantity - 1;
+        setQuantity(newQuantity);
+        if (newQuantity === 0) {
+            setShowQuantityControls(false);
+        }
+    };
 
+    // Add a new function to handle Add to Cart click
+    const handleAddToCart = () => {
+        setShowQuantityControls(true);
+        setQuantity(1);
+    };
     const handleUpdateQuantity = () => {
         updateQuantity(id, quantity);
     };
@@ -148,9 +161,11 @@ export default function ProductPage() {
                             <Image
                                 src={product.images[selectedImage]}
                                 alt={product.name}
-                                className="object-cover h-50"
-                                fill
-                                priority
+                                height={200}
+                                width={500}
+                                className="h-50 w-full"
+                            // fill
+                            // priority
                             />
                         </div>
                         <div className="grid grid-cols-4 gap-3 border-gray-400 border-[1px] p-2 rounded-lg">
@@ -164,7 +179,7 @@ export default function ProductPage() {
                                     <Image
                                         src={image}
                                         alt={`Product ${index + 1}`}
-                                        className="object-cover"
+                                        className="object-cover "
                                         fill
                                     />
                                 </button>
@@ -179,7 +194,7 @@ export default function ProductPage() {
                                     {product.category}
                                 </span>
                             </div>
-                            <h1 className="text-xl font-medium text-gray-900">
+                            <h1 className="text-xl font-semibold text-gray-900">
                                 {product.name}
                             </h1>
                         </div>
@@ -192,7 +207,7 @@ export default function ProductPage() {
                                     {variants.map((variant) => (
                                         <div
                                             key={variant.value}
-                                            className={`w-[150px] relative flex flex-col p-2 border rounded-lg cursor-pointer m-1 transition-all ${selectedValue === variant.value
+                                            className={`w-[140px] relative flex flex-col p-2 border rounded-lg cursor-pointer m-1 transition-all ${selectedValue === variant.value
                                                 ? 'border-[#FF7700] m-1 shadow-lg ring-1 ring-[#FF7700]'
                                                 : ''
                                                 }`}
@@ -210,30 +225,75 @@ export default function ProductPage() {
                                 </div>
                                 {/* </div> */}
                             </ScrollArea>
+                            <div className="flex justify-around">
+                                <div className="flex flex-col ">
+                                    <span className="text-2xl w-full text-center font-bold">
+                                        ₹{variants.find(v => v.value === selectedValue)?.price || 0}
+                                    </span>
+                                    {variants.find(v => v.value === selectedValue)?.originalPrice && (
+                                        <span className="text-sm text-gray-500 line-through">
+                                            MRP ₹{variants.find(v => v.value === selectedValue)?.originalPrice}
+                                        </span>
+                                    )}
+                                    <span className="text-[10px] text-gray-500">(Inclusive of all taxes)</span>
+                                </div>
+                                <div className="flex justify-center items-center flex-col text-center gap-2 " >
+                                    {showQuantityControls ? (
+                                        <div className="flex items-center justify-start gap-2 bg-[#FF7700] text-white p-3 rounded-lg ">
+                                            <Button
+                                                variant="outline"
+                                                size="icon"
+                                                className="h-6 w-6"
+                                                onClick={decrement}
+                                                aria-label="Decrease quantity"
+                                            >
+                                                <Minus className="h-4 w-4 text-black" />
+                                                <span className="sr-only">Decrease quantity</span>
+                                            </Button>
+                                            <span className="w-8 text-center">{quantity}</span>
+                                            <Button
+                                                variant="outline"
+                                                size="icon"
+                                                className="h-6 w-6"
+                                                onClick={increment}
+                                                aria-label="Increase quantity"
+                                            >
+                                                <Plus className="h-4 w-4 text-black" />
+                                                <span className="sr-only">Increase quantity</span>
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            className="w-[180px] bg-[#FF7700] hover: text-white"
+                                            onClick={handleAddToCart}
+                                        >
+                                            ADD TO CART
+                                        </Button>
+                                    )}
+                                </div>
 
-
-                            <div className="flex items-center justify-start gap-2">
-                                <Button variant="outline" size="icon" className="h-8 w-8"
-                                    onClick={decrement} aria-label="Decrease quantity">
-                                    <Minus className="h-4 w-4" />
-                                    <span className="sr-only">Decrease quantity</span>
-                                </Button>
-                                <span className="w-8 text-center">{quantity}</span>
-                                <Button variant="outline" size="icon" className="h-8 w-8"
-                                    onClick={increment} aria-label="Increase quantity"
-                                >
-                                    <Plus className="h-4 w-4" />
-                                    <span className="sr-only">Increase quantity</span>
-                                </Button>
+                                <div className="justify-end flex flex-col gap-2">
+                                    {/* <Button
+                                        variant="outline"
+                                        className="w-[180px] border-[1px] border-[#FF7700] text-[#FF7700]"
+                                        onClick={handleRedirect}
+                                    >
+                                        Quick buy
+                                    </Button> */}
+                                </div>
                             </div>
-
-                            <p className="text-xs text-gray-500">(Inclusive of all taxes)</p>
                         </div>
-                        <div className="space-y-2">
+                        {/* <div className="">
                             <Accordion type="single" collapsible className="space-y-2">
+
+                            </Accordion>
+                        </div> */}
+
+                        <div className="space-y-2">
+                            <Accordion type="single" defaultValue="description" collapsible className="w-full">
                                 <AccordionItem value="offers">
-                                    <AccordionTrigger className="font-medium">
-                                        View Offers
+                                    <AccordionTrigger className='text-sm font-semibold'>
+                                        VIEW OFFERS
                                     </AccordionTrigger>
                                     <AccordionContent>
                                         <div className="space-y-4">
@@ -258,25 +318,8 @@ export default function ProductPage() {
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
-                            </Accordion>
-                        </div>
-                        <div className="space-y-4">
-                            <Button className="w-full bg-[#552C7B] text-white">
-                                ADD TO BAG
-                            </Button>
-                            <Button variant="outline" className="w-full border-[1px] border-[#552C7B] text-[#552C7B]"
-                                onClick={handleRedirect}
-                            >
-                                {/* <Heart className="mr-2 h-4 w-4" /> */}
-                                Quick buy
-                            </Button>
-                        </div>
-
-
-                        <div className="space-y-6 pt-6 border-t">
-                            <Accordion type="single" defaultValue="description" collapsible className="w-full">
                                 <AccordionItem value="description">
-                                    <AccordionTrigger>DESCRIPTION</AccordionTrigger>
+                                    <AccordionTrigger className='text-sm font-semibold'>DESCRIPTION</AccordionTrigger>
                                     <AccordionContent>
                                         <p>{product.description}</p>
                                         <div className="mt-4">
@@ -290,7 +333,7 @@ export default function ProductPage() {
                                 </AccordionItem>
 
                                 <AccordionItem value="reviews">
-                                    <AccordionTrigger>REVIEWS</AccordionTrigger>
+                                    <AccordionTrigger className='text-sm font-semibold'>REVIEWS</AccordionTrigger>
                                     <AccordionContent>
                                         {product.reviews.map((review, index) => (
                                             <div key={index} className="mb-4">
@@ -372,7 +415,7 @@ export default function ProductPage() {
                     </div>
                 </div>
             )}
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center pb-20">
                 <BestSeller />
             </div>
         </>

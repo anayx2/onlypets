@@ -25,7 +25,7 @@ const categories = [
         href: "/category/cat-food",
     },
     {
-        name: "Dog Beds",
+        name: "Dog Food",
         id: "4",
         icon: Dog,
         href: "/category/dog-beds",
@@ -48,13 +48,19 @@ const categories = [
         icon: Fish,
         href: "/category/fish",
     },
+    {
+        name: "Beds",
+        id: "4",
+        icon: Dog,
+        href: "/category/dog-beds",
+    },
 ];
 
 
 const CategoryIcons = () => {
     return (
 
-        <div className="w-full px-4 py-6 ">
+        <div className="w-full px-2 py-6 ">
             <Tabs defaultValue={categories[0].id} >
                 <TabsList className="flex shadow-md justify-start overflow-x-auto h-auto bg-transparent gap-2 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                     {categories.map((category) => (
