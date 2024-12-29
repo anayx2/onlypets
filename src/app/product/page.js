@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BadgePercent, Heart, Minus, Plus, Star, Tag, X } from 'lucide-react';
+import { BadgePercent, CircleChevronLeft, Heart, Minus, MoveLeft, MoveLeftIcon, Plus, Star, Tag, X } from 'lucide-react';
 import {
     Accordion,
     AccordionContent,
@@ -17,6 +17,7 @@ import BestSeller from "@/components/Homepage/BestSeller";
 // import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRouter } from "next/navigation";
+
 
 const product = {
     id: 6,
@@ -148,16 +149,23 @@ export default function ProductPage() {
         updateQuantity(id, quantity);
     };
 
+    const back = () => {
+        router.back()
+    }
     return (
         <>
-            <div className="container max-w-7xl mx-auto px-4 py-8">
-                <div className="grid md:grid-cols-2 gap-8 ">
+            <div className="bg-gray-200 w-9 h-9 mx-4 mt-4 cursor-pointer rounded-full flex items-center justify-center" >
+                <CircleChevronLeft onClick={back} />
+            </div>
+            <div className="container max-w-7xl mx-auto px-4 pt-2 pb-4">
+                <div className="grid md:grid-cols-2 gap-4 ">
                     <div className="space-y-4 rounded-lg md:border-gray-300 md:border-[1px] lg:border-gray-300 lg:border-[1px] p-1 shadow-lg "
                         style={{ height: "" }}>
                         <div
                             className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
-                            onClick={() => setIsFullscreen(true)}
-                        >
+                            onClick={() => setIsFullscreen(true)}                        >
+
+
                             <Image
                                 src={product.images[selectedImage]}
                                 alt={product.name}
@@ -190,7 +198,7 @@ export default function ProductPage() {
                     <div className="max-w-2xl lg:p-4 space-y-6 ">
                         <div className="space-y-2 ">
                             <div className="flex items-center gap-2">
-                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                <span className="inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                                     {product.category}
                                 </span>
                             </div>
@@ -225,9 +233,9 @@ export default function ProductPage() {
                                 </div>
                                 {/* </div> */}
                             </ScrollArea>
-                            <div className="flex justify-around">
+                            <div className="flex justify-between">
                                 <div className="flex flex-col ">
-                                    <span className="text-2xl w-full text-center font-bold">
+                                    <span className="text-3xl w-full text-center font-bold">
                                         ₹{variants.find(v => v.value === selectedValue)?.price || 0}
                                     </span>
                                     {variants.find(v => v.value === selectedValue)?.originalPrice && (
@@ -237,7 +245,7 @@ export default function ProductPage() {
                                     )}
                                     <span className="text-[10px] text-gray-500">(Inclusive of all taxes)</span>
                                 </div>
-                                <div className="flex justify-center items-center flex-col text-center gap-2 " >
+                                <div className="flex justify-center flex-col text-center gap-2 " >
                                     {showQuantityControls ? (
                                         <div className="flex items-center justify-start gap-2 bg-[#FF7700] text-white p-3 rounded-lg ">
                                             <Button
@@ -264,22 +272,12 @@ export default function ProductPage() {
                                         </div>
                                     ) : (
                                         <Button
-                                            className="w-[180px] bg-[#FF7700] hover: text-white"
+                                            className="w-[180px] bg-[#FF7700] hover:bg-[#FF7700]"
                                             onClick={handleAddToCart}
                                         >
                                             ADD TO CART
                                         </Button>
                                     )}
-                                </div>
-
-                                <div className="justify-end flex flex-col gap-2">
-                                    {/* <Button
-                                        variant="outline"
-                                        className="w-[180px] border-[1px] border-[#FF7700] text-[#FF7700]"
-                                        onClick={handleRedirect}
-                                    >
-                                        Quick buy
-                                    </Button> */}
                                 </div>
                             </div>
                         </div>
@@ -376,7 +374,7 @@ export default function ProductPage() {
                 </div>
             </div>
             {isFullscreen && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
+                <div className="fixed inset-0 bg-black bg-opacity-90 z-30 flex items-center justify-center"
                     style={{ pointerEvents: 'auto' }} // Ensure the modal overlay receives touch events on mobile
                 >
                     <button
@@ -415,7 +413,17 @@ export default function ProductPage() {
                     </div>
                 </div>
             )}
+            <div className="flex flex-col justify-center py-10">
+                <span className="text-2xl text-center font-bold mb-2">Similar Products</span>
+                <BestSeller />
+            </div>
+
+            <div className="flex flex-col justify-center pb-10">
+                <span className="text-2xl text-center font-bold mb-2">People also bought</span>
+                <BestSeller />
+            </div>
             <div className="flex flex-col justify-center pb-20">
+                <span className="text-2xl text-center font-bold mb-2">Top Products</span>
                 <BestSeller />
             </div>
         </>

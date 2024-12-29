@@ -139,10 +139,10 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
 const ProductGrid = () => {
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="text-center mb-8">
+            {/* <div className="text-center mb-8">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">What Are you looking for???</h1>
                 <p className="text-gray-600 text-sm sm:text-base">You cannot go wrong with these!</p>
-            </div>
+            </div> */}
 
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
