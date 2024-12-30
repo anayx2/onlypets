@@ -49,6 +49,9 @@ export default function CouponsPage() {
     const back = () => {
         router.back()
     }
+    const cart = () => {
+        router.push('/cart')
+    }
 
     const CouponCard = ({ coupon }) => (
         <Card className="mb-4">
@@ -100,7 +103,7 @@ export default function CouponsPage() {
                     <Button
                         variant="outlined"
                         className="absolute right-2 top-1/2 -translate-y-1/2 text-[#FF7700] hover:text-[#FF7700] font-medium"
-                    >
+                   onClick={cart} >
                         APPLY
                     </Button>
                 </div>
@@ -149,7 +152,7 @@ export default function CouponsPage() {
                 {/* Selected Coupon */}
                 {selectedCoupons.length > 0 && (
                     <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
-                        <Button className="w-full bg-[#FF7700] hover:bg-[#FF7700] text-white py-6 text-lg">
+                        <Button className="w-full bg-[#FF7700] hover:bg-[#FF7700] text-white py-6 text-lg" onClick={cart}>
                             Tap to apply
                         </Button>
                     </div>
