@@ -18,12 +18,13 @@ import styles from "@/styles/hero.module.css";
 import Sec2products from "@/components/Homepage/Sec2products";
 import { Button } from "@/components/ui/button";
 import CategoryHero from "@/components/Homepage/CategoryHero";
+import Image from "next/image";
 
 const page = () => {
   return (
     <>
       <div className="bg-[#350303] pb-[50px]">
-{/* <Hero/> */}
+        {/* <Hero/> */}
         <div className="h-[80px] text-center border border-white w-full">
           .....video.....
         </div>
@@ -60,6 +61,19 @@ const page = () => {
       <TipsbyExperts />
       <Testimonial />
       <FAQSection />
+      <section className="p-5 flex items-end justify-between">
+        <div className="flex text-[40px] font-bold text-[#FF7700] opacity-70 ">
+          Pet parents favorite<br />Pet Store
+        </div>
+        <div className="pb-3">
+          <Image
+            src={'/petbag.svg'}
+            width={90}
+            height={90}
+            alt="bag"
+          />
+        </div>
+      </section>
     </>
   );
 };

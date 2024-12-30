@@ -23,9 +23,7 @@ const FloatingCartCounter = () => {
 
   return (
     <>
-      {/* Container that stays mounted for smooth transitions */}
       <div className="fixed z-50 bottom-4 shadow-md">
-        {/* Floating bag icon */}
         <div
           onClick={() => setIsExpanded(true)}
           className={`
@@ -61,7 +59,10 @@ const FloatingCartCounter = () => {
           `}
         >
           <div className="bg-[#FF7700] text-white px-6 py-3 rounded-full shadow-lg flex items-center justify-between gap-2 cursor-pointer">
-            <div className="flex justify-between gap-2 w-full" onClick={checkout}>
+            <div
+              className="flex justify-between gap-2 w-full"
+              onClick={checkout}
+            >
               <div className="flex gap-1 items-center">
                 <ShoppingBag className="w-5 h-5" />
                 <span className="font-bold">
