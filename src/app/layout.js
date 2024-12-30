@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
       <meta name="theme-color" content="#971b1b"></meta>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LayoutContent fontClasses={`${geistSans.variable} ${geistMono.variable}`}>
+          
           {children}
         </LayoutContent>
       </body>
