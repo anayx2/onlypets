@@ -2,19 +2,23 @@
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { MoveRight, ShoppingBag, X } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const FloatingCartCounter = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { cart } = useCart();
   const router = useRouter();
+  const pathname = usePathname(); // Get the current route
+
+  // Hide the component on /checkout and /cart
+  if (pathname === "/checkout" || pathname === "/cart") return null;
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   if (totalItems === 0) return null;
 
   const checkout = () => {
-    router.push("/checkout");
+    router.push("/cart");
   };
 
   return (
@@ -57,27 +61,29 @@ const FloatingCartCounter = () => {
           `}
         >
           <div className="bg-[#FF7700] text-white px-6 py-3 rounded-full shadow-lg flex items-center justify-between gap-2 cursor-pointer">
-            <div className="flex gap-1 items-center">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="font-bold">
-                {totalItems} {totalItems === 1 ? "item" : "items"}
-              </span>
-            </div>
-            <div className="flex gap-2 items-center">
-              <div
-                onClick={checkout}
-                className="flex gap-1 items-center hover:opacity-80 transition-opacity"
-              >
-                View cart <MoveRight />
+            <div className="flex justify-between gap-2 w-full" onClick={checkout}>
+              <div className="flex gap-1 items-center">
+                <ShoppingBag className="w-5 h-5" />
+                <span className="font-bold">
+                  {totalItems} {totalItems === 1 ? "item" : "items"}
+                </span>
               </div>
-              <button
-                onClick={() => setIsExpanded(false)}
-                className="ml-2 p-1 hover:bg-[#ff8c2d] rounded-full transition-colors duration-200
-                  w-7 h-7 flex items-center justify-center"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex gap-2 items-center">
+                <div
+                  onClick={checkout}
+                  className="flex gap-1 items-center hover:opacity-80 transition-opacity"
+                >
+                  View cart <MoveRight />
+                </div>
+              </div>
             </div>
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="ml-2 p-1 hover:bg-[#ff8c2d] rounded-full transition-colors duration-200
+                  w-7 h-7 flex items-center justify-center"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

@@ -87,12 +87,14 @@ const variants = [
         price: 79,
         originalPrice: null,
         value: 'pack2',
+        discount: '10% off'
     },
     {
         name: '750 ml',
         price: 40,
         originalPrice: null,
         value: 'single',
+        discount: '12% off'
     },
     // Add more variants as needed
 ];
@@ -221,6 +223,9 @@ export default function ProductPage() {
                                                 }`}
                                             onClick={() => handleSelect(variant.value)}
                                         >
+                                            {/* <div>
+                                                {varient}
+                                            </div> */}
                                             <span className="font-medium">{variant.name}</span>
                                             <span className="text-sm text-gray-600">
                                                 ₹{variant.price}
