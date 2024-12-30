@@ -1,8 +1,7 @@
-'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import Image from 'next/image';
 
 // Data for footer menus
 const footerMenus = [
@@ -39,46 +38,54 @@ const footerMenus = [
 ];
 
 export function Footer() {
-    const [email, setEmail] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Subscribing email:', email);
-        setEmail('');
-    };
 
     return (
-        <footer className="bg-[#0A0F1C] text-white py-5 ">
-            <div className="container px-6 md:px-12">
-                <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="footer">
-                        <AccordionTrigger className="text-sm lg:text-2xl no-underline decoration-none font-semibold text-center">
-                            Only Pets, pet parents' favorite store
-                        </AccordionTrigger>
-                        <AccordionContent>
-                            <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-12 justify-items-center">
-                                {/* Menu Sections */}
-                                {footerMenus.map((menu, index) => (
-                                    <div key={index}>
-                                        <h2 className="lg:text-2xl text-sm font-semibold mb-4 text-white">{menu.title}</h2>
-                                        <ul className="space-y-3">
-                                            {menu.links.map((link, idx) => (
-                                                <li key={idx}>
-                                                    <Link
-                                                        href={link.href}
-                                                        className="hover:text-orange-500 lg:text-xl md:text-lg text-xs transition text-white"
-                                                    >
-                                                        {link.name}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
+        <>
+            <div className="p-4 flex  flex items-end justify-between relative">
+                <div className="flex text-[40px] font-bold text-[#FF7700]  z-20">
+                    <span >
+                        Pet store for<br /> your furry<br /> friends...
+                    </span>
+                </div>
+                <Image
+                    src={'/dogbgsection.svg'}
+                    width={200}
+                    height={140}
+                    className="mt-[-50px] absolute bottom-0 right-0"
+                    alt="bg"
+                />
+            </div>
+            <footer className="bg-[#0A0F1C] text-white py-5 ">
+                <div className="container px-6 md:px-12">
+                    <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="footer">
+                            <AccordionTrigger className="text-sm lg:text-2xl no-underline decoration-none font-semibold text-center">
+                                Only Pets, pet parents' favorite store
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-12 justify-items-center">
+                                    {/* Menu Sections */}
+                                    {footerMenus.map((menu, index) => (
+                                        <div key={index}>
+                                            <h2 className="lg:text-2xl text-sm font-semibold mb-4 text-white">{menu.title}</h2>
+                                            <ul className="space-y-3">
+                                                {menu.links.map((link, idx) => (
+                                                    <li key={idx}>
+                                                        <Link
+                                                            href={link.href}
+                                                            className="hover:text-orange-500 lg:text-xl md:text-lg text-xs transition text-white"
+                                                        >
+                                                            {link.name}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
 
-                            {/* Newsletter Section */}
-                            {/* <div className="max-w-2xl mx-auto mb-12 text-center">
+                                {/* Newsletter Section */}
+                                {/* <div className="max-w-2xl mx-auto mb-12 text-center">
                                 <h2 className="text-2xl text-white font-semibold mb-6">Subscribe to our newsletter</h2>
                                 <p className="text-gray-400 mb-4">
                                     Stay updated with the latest collections and exclusive offers.
@@ -100,15 +107,16 @@ export function Footer() {
                                     </button>
                                 </form>
                             </div> */}
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
 
-                {/* Copyright Section */}
-                <div className="text-center text-gray-400 text-[10px] mt-8">
-                    © {new Date().getFullYear()} OnlyPets. Powered By Alphabet Technology.
+                    {/* Copyright Section */}
+                    <div className="text-center text-gray-400 text-[10px] mt-8">
+                        © {new Date().getFullYear()} OnlyPets. Powered By Alphabet Technology.
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </>
     );
 }

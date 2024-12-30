@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { MoveRight, ShoppingBag, X } from "lucide-react";
+import { ChevronRight, MoveRight, ShoppingBag, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 
 const FloatingCartCounter = () => {
@@ -79,7 +79,8 @@ const FloatingCartCounter = () => {
                   onClick={checkout}
                   className="flex gap-1 items-center hover:opacity-80 transition-opacity"
                 >
-                  View cart <MoveRight />
+                  View cart
+                  <ChevronRight />
                 </div>
               </div>
             </div>

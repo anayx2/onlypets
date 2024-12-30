@@ -61,19 +61,7 @@ const page = () => {
       <TipsbyExperts />
       <Testimonial />
       <FAQSection />
-      <section className="p-5 flex items-end justify-between">
-        <div className="flex text-[40px] font-bold text-[#FF7700] opacity-70 ">
-          Pet parents favorite<br />Pet Store
-        </div>
-        <div className="pb-3">
-          <Image
-            src={'/petbag.svg'}
-            width={90}
-            height={90}
-            alt="bag"
-          />
-        </div>
-      </section>
+     
     </>
   );
 };

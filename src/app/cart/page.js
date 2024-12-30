@@ -6,9 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import CouponsPage from "@/app/cart/coupons/page";
+import { useState } from "react";
 
 export default function CartPage() {
     const router = useRouter();
+
+    // Close the modal
+    const closeModal = () => {
+        setShowModal(false)
+    }
 
     const product = {
         id: 6,
@@ -28,6 +35,9 @@ export default function CartPage() {
 
     const back = () => {
         router.back()
+    }
+    const handleViewOffersClick = () => {
+        router.push('/cart/coupons')
     }
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
@@ -49,17 +59,21 @@ export default function CartPage() {
                 </div>
 
                 {/* Delivery Info */}
-                <Card className="p-3">
-                    <div>
-                        <span className=" ml-1 text-sm font-semibold">
-                            Have a coupon Code?
-                        </span>
-                        <span className="flex gap-2 mt-1 items-center" >
-                            <Input />
-                            <Button variant="outline" className="border-[#FF7700] text-[#FF7700]">Apply</Button>
-                        </span>
-                    </div>
-                </Card>
+                <div>
+                    {/* Card for coupon link */}
+                    <Card className="p-3">
+                        <div className="flex justify-between">
+                            <span className="ml-1 text-sm font-semibold">
+                                Have a coupon Code?
+                            </span>
+                            <span className="underline cursor-pointer" onClick={handleViewOffersClick}>
+                                View Offers
+                            </span>
+                        </div>
+                    </Card>
+
+
+                </div>
 
                 {/* Product Card */}
                 <Card className="p-3">
