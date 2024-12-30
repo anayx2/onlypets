@@ -50,7 +50,7 @@ const FloatingCartCounter = () => {
         {/* Expanded cart view */}
         <div
           className={`
-            fixed bottom-4 left-1/2 w-[80%] max-w-md transition-all duration-300 ease-in-out
+            fixed bottom-4 left-1/2 w-[90%] max-w-md transition-all duration-300 ease-in-out
             ${
               isExpanded
                 ? "opacity-100 -translate-x-1/2 translate-y-0"
@@ -58,15 +58,20 @@ const FloatingCartCounter = () => {
             }
           `}
         >
-          <div className="bg-[#FF7700] text-white px-6 py-3 rounded-full shadow-lg flex items-center justify-between gap-2 cursor-pointer">
+          <div className="bg-[#FF7700] text-white px-6 py-3 rounded-lg shadow-lg flex items-center justify-between gap-2 cursor-pointer ">
             <div
               className="flex justify-between gap-2 w-full"
               onClick={checkout}
             >
-              <div className="flex gap-1 items-center">
-                <ShoppingBag className="w-5 h-5" />
-                <span className="font-bold">
-                  {totalItems} {totalItems === 1 ? "item" : "items"}
+              <div className="flex gap-2 items-center">
+                <span className="rounded-lg bg-orange-400 p-2">
+                  <ShoppingBag className="w-5 h-5" />
+                </span>
+                <span className="flex flex-col">
+                  <span className="font-medium text-[12px]">
+                    {totalItems} {totalItems === 1 ? "item" : "items"}
+                  </span>
+                  <span className="font-medium text-[14px]">$200 </span>
                 </span>
               </div>
               <div className="flex gap-2 items-center">
@@ -78,13 +83,18 @@ const FloatingCartCounter = () => {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="ml-2 p-1 hover:bg-[#ff8c2d] rounded-full transition-colors duration-200
-                  w-7 h-7 flex items-center justify-center"
+            <div
+              className="absolute -top-2 -right-2 bg-white text-[#FF7700] rounded-full w-6 h-6 
+              flex items-center justify-center text-sm font-bold transition-all duration-300 shadow-xl border border-[#FF7700]"
             >
-              <X className="w-5 h-5" />
-            </button>
+              <button
+                onClick={() => setIsExpanded(false)}
+                className=" p-1 hover:bg-[#ff8c2d] rounded-full transition-colors duration-200
+              w-7 h-7 flex items-center justify-center"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
