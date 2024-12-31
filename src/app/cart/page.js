@@ -68,10 +68,10 @@ export default function CartPage() {
 
             <div className="flex-1 p-4 space-y-4">
                 {/* Savings Banner */}
-                <div className="bg-blue-50 p-3 rounded-lg">
+                <div className="bg-green-50 p-3 rounded-lg">
                     <div className="flex justify-between items-center">
-                        <span className="text-blue-600">Your total savings</span>
-                        <span className="text-blue-600">₹{savings + (appliedCoupon?.discount || 0)}</span>
+                        <span className="text-green-600">Your total savings</span>
+                        <span className="text-green-600">₹{savings + (appliedCoupon?.discount || 0)}</span>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ export default function CartPage() {
                                     <span className="ml-1 text-sm font-semibold text-green-600">
                                         Applied: {appliedCoupon.code}
                                     </span>
-                                    <span className="ml-1 text-xs text-gray-500">
+                                    <span className="ml-1 text-xs text-green-600">
                                         Saved ₹{appliedCoupon.discount}
                                     </span>
                                 </div>

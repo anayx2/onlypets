@@ -18,7 +18,7 @@ export default function LayoutContent({ children, fontClasses }) {
                 </div>
             )}
 
-            <main className={`relative ${isHomePage ? 'pt-[230px]' : 'pt-0'}`}>
+            <main className={`relative ${isHomePage ? 'pt-[205px]' : 'pt-0'}`}>
                 {children}
             </main>
             <FloatingCartCounter />

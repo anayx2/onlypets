@@ -73,13 +73,13 @@ const categories = [
 
 const CategoryHero = () => {
     return (
-        <div className="w-full px-4 py-6">
+        <div className="w-full px-4 pt-1">
             <Carousel
                 opts={{
                     align: "start",
                 }}
             >
-                <CarouselContent className="-ml-4">
+                <CarouselContent>
                     {categories.map((category) => (
                         <CarouselItem
                             key={category.id}
