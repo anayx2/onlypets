@@ -1,21 +1,15 @@
 'use client';
 
 import Image from "next/image";
-import { Minus, Plus, X, Clock, CircleChevronLeft } from 'lucide-react';
+import { Minus, Plus, CircleChevronLeft } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import CouponsPage from "@/app/cart/coupons/page";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CartPage() {
     const router = useRouter();
-
-    // Close the modal
-    const closeModal = () => {
-        setShowModal(false)
-    }
+    const [appliedCoupon, setAppliedCoupon] = useState(null);
 
     const product = {
         id: 6,
@@ -25,20 +19,43 @@ export default function CartPage() {
         images: ["/topproducts/p6.jpg"],
         rating: 4,
         originalPrice: 170.0,
-        salePrice: 140.0,
+        salePrice: 540.0,
         discount: 15,
         brand: "Pedigree",
     };
 
+    useEffect(() => {
+        // Get applied coupon from localStorage
+        const couponData = localStorage.getItem('appliedCoupon');
+        if (couponData) {
+            setAppliedCoupon(JSON.parse(couponData));
+        }
+    }, []);
+
+    const removeCoupon = () => {
+        localStorage.removeItem('appliedCoupon');
+        setAppliedCoupon(null);
+    };
+
     const savings = product.originalPrice - product.salePrice;
-    const quantity = 1; // This would typically come from state management
+    const quantity = 1;
 
     const back = () => {
         router.back()
     }
+
     const handleViewOffersClick = () => {
         router.push('/cart/coupons')
     }
+
+    // Calculate final amount after coupon discount
+    const calculateFinal = () => {
+        const subtotal = product.salePrice;
+        const gst = 5;
+        const couponDiscount = appliedCoupon ? appliedCoupon.discount : 0;
+        return subtotal + gst - couponDiscount;
+    }
+
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             {/* Header */}
@@ -54,26 +71,48 @@ export default function CartPage() {
                 <div className="bg-blue-50 p-3 rounded-lg">
                     <div className="flex justify-between items-center">
                         <span className="text-blue-600">Your total savings</span>
-                        <span className="text-blue-600">₹{savings}</span>
+                        <span className="text-blue-600">₹{savings + (appliedCoupon?.discount || 0)}</span>
                     </div>
                 </div>
 
-                {/* Delivery Info */}
-                <div>
-                    {/* Card for coupon link */}
-                    <Card className="p-3">
-                        <div className="flex justify-between">
-                            <span className="ml-1 text-sm font-semibold">
-                                Have a coupon Code?
-                            </span>
-                            <span className="underline cursor-pointer" onClick={handleViewOffersClick}>
-                                View Offers
-                            </span>
-                        </div>
-                    </Card>
+                {/* Coupon Section */}
+                <Card className="p-3">
+                    <div className="flex justify-between items-center">
+                        {!appliedCoupon ? (
+                            <>
+                                <span className="ml-1 text-sm font-semibold">
+                                    Have a coupon Code?
+                                </span>
+                                <span
+                                    className="underline cursor-pointer text-[#FF7700]"
+                                    onClick={handleViewOffersClick}
+                                >
+                                    View Offers
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex flex-col">
+                                    <span className="ml-1 text-sm font-semibold text-green-600">
+                                        Applied: {appliedCoupon.code}
+                                    </span>
+                                    <span className="ml-1 text-xs text-gray-500">
+                                        Saved ₹{appliedCoupon.discount}
+                                    </span>
+                                </div>
+                                <div className="flex gap-2">
+                                    <span
+                                        className="underline cursor-pointer text-red-500 text-sm"
+                                        onClick={removeCoupon}
+                                    >
+                                        Remove
+                                    </span>
 
-
-                </div>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </Card>
 
                 {/* Product Card */}
                 <Card className="p-3">
@@ -128,13 +167,19 @@ export default function CartPage() {
                             </span>
                             <span className="text-green-600">FREE</span>
                         </div>
+                        {appliedCoupon && (
+                            <div className="flex justify-between text-green-600">
+                                <span>Coupon discount ({appliedCoupon.code})</span>
+                                <span>-₹{appliedCoupon.discount}</span>
+                            </div>
+                        )}
                         <div className="flex justify-between">
                             <span>GST & other taxes</span>
                             <span>₹5</span>
                         </div>
                         <div className="border-t pt-2 flex justify-between font-semibold">
                             <span>Grand total</span>
-                            <span>₹{product.salePrice + 5}</span>
+                            <span>₹{calculateFinal()}</span>
                         </div>
                     </div>
                 </Card>
@@ -142,7 +187,7 @@ export default function CartPage() {
 
             {/* Footer */}
             <div className="sticky bottom-0 p-4 bg-white border-t">
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-[#FF7700] hover:bg-[#FF7700] text-white">
                     Proceed to Checkout
                 </Button>
             </div>

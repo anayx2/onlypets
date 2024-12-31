@@ -84,8 +84,7 @@ const FloatingCartCounter = () => {
                 </div>
               </div>
             </div>
-            <div
-              className="absolute -top-2 -right-2 bg-white text-[#FF7700] rounded-full w-6 h-6 
+            <div className="absolute -top-2 -right-2 bg-white text-[#FF7700] rounded-full w-6 h-6 
               flex items-center justify-center text-sm font-bold transition-all duration-300 shadow-xl border border-[#FF7700]"
             >
               <button

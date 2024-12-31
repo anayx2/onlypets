@@ -1,5 +1,6 @@
-
+"use client"
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import Image from 'next/image';
 
@@ -38,12 +39,21 @@ const footerMenus = [
 ];
 
 export function Footer() {
+    const pathname = usePathname();
+
+    // Array of routes where the footer should be hidden
+    const hiddenRoutes = ['/cart', '/checkout', '/coupon', '/cart/coupons'];
+
+    // If current path is in hiddenRoutes, don't render the footer
+    if (hiddenRoutes.includes(pathname)) {
+        return null;
+    }
 
     return (
         <>
-            <div className="p-4 flex  flex items-end justify-between relative">
-                <div className="flex text-[40px] font-bold text-[#FF7700]  z-20">
-                    <span >
+            <div className="p-4 flex items-end justify-between relative">
+                <div className="flex text-[40px] font-bold text-[#FF7700] z-20">
+                    <span>
                         Pet store for<br /> your furry<br /> friends...
                     </span>
                 </div>
@@ -55,7 +65,7 @@ export function Footer() {
                     alt="bg"
                 />
             </div>
-            <footer className="bg-[#0A0F1C] text-white py-5 ">
+            <footer className="bg-[#0A0F1C] text-white py-5">
                 <div className="container px-6 md:px-12">
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="footer">
@@ -64,7 +74,6 @@ export function Footer() {
                             </AccordionTrigger>
                             <AccordionContent>
                                 <div className="grid grid-cols-3 md:grid-cols-3 gap-8 mb-12 justify-items-center">
-                                    {/* Menu Sections */}
                                     {footerMenus.map((menu, index) => (
                                         <div key={index}>
                                             <h2 className="lg:text-2xl text-sm font-semibold mb-4 text-white">{menu.title}</h2>
@@ -83,30 +92,6 @@ export function Footer() {
                                         </div>
                                     ))}
                                 </div>
-
-                                {/* Newsletter Section */}
-                                {/* <div className="max-w-2xl mx-auto mb-12 text-center">
-                                <h2 className="text-2xl text-white font-semibold mb-6">Subscribe to our newsletter</h2>
-                                <p className="text-gray-400 mb-4">
-                                    Stay updated with the latest collections and exclusive offers.
-                                </p>
-                                <form onSubmit={handleSubmit} className="flex flex-row justify-center items-center gap-2">
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="flex-1 max-w-[60%] px-4 py-3 rounded-lg bg-white text-black placeholder:text-gray-400"
-                                        required
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="px-4 py-3 bg-orange-500 text-white text-sm md:text-base lg:text-base font-medium rounded-lg hover:bg-orange-600 transition"
-                                    >
-                                        SUBSCRIBE
-                                    </button>
-                                </form>
-                            </div> */}
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
