@@ -1,242 +1,17 @@
-// 'use client';
-// import React, { useEffect, useState } from "react";
-// import Image from "next/image";
-// import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-// import { Card, CardContent } from "@/components/ui/card";
-
-// const Hero = () => {
-//     const desktopBanners = [
-//         "/herodesk.webp",
-//         "/herodesk.webp",
-//         "/herodesk.webp",
-//         "/herodesk.webp",
-//     ];
-
-//     const mobileBanners = [
-//         "/heroimg.png",
-//         "/heroimg.png",
-//         "/heroimg.png",
-//     ];
-
-//     const [isMobile, setIsMobile] = useState(false);
-//     const banners = isMobile ? mobileBanners : desktopBanners;
-
-//     useEffect(() => {
-//         const handleResize = () => {
-//             setIsMobile(window.innerWidth < 768); // Tailwind's md breakpoint
-//         };
-//         handleResize();
-//         window.addEventListener("resize", handleResize);
-//         return () => window.removeEventListener("resize", handleResize);
-//     }, []);
-
-//     return (
-//         <div className="w-full overflow-hidden">
-//             <div className='bg-[#4E0A09] text-white'>
-//                 <div className="overflow-hidden whitespace-nowrap">
-//                     <div className="flex animate-marquee">
-//                         {[...Array(50)].map((_, index) => (
-//                             <span key={index} className="px-[50px]">
-//                                 upto 30% on Pet Food
-//                             </span>
-//                         ))}
-//                     </div>
-//                 </div>
-//             </div>
-//             {/* Shad UI Carousel Wrapper */}
-//             <Carousel className="w-full h-90 relative">
-//                 <CarouselContent>
-//                     {banners.map((banner, index) => (
-//                         <CarouselItem key={index} className="flex justify-center items-center">
-
-//                             <Card className="h-full w-full">
-//                                 <div>
-
-//                                     <CardContent className="p-0 m-0 flex items-center justify-center h-full">
-//                                         <Image
-//                                             src={banner}
-//                                             alt="Banner"
-//                                             width={1920}
-//                                             quality={70}
-//                                             height={1080}
-//                                             style={{ objectFit: "cover" }}
-//                                             className="w-full h-[60vh] md:h-[auto]"
-//                                         />
-//                                     </CardContent>
-//                                 </div>
-//                             </Card>
-//                         </CarouselItem>
-//                     ))}
-//                 </CarouselContent>
-
-//                 {/* Carousel Controls */}
-//                 <CarouselPrevious className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2">
-//                     <svg
-//                         xmlns="http://www.w3.org/2000/svg"
-//                         fill="none"
-//                         viewBox="0 0 24 24"
-//                         strokeWidth="2"
-//                         stroke="currentColor"
-//                         className="w-6 h-6 text-white"
-//                     >
-//                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-//                     </svg>
-//                 </CarouselPrevious>
-//                 <CarouselNext className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2">
-//                     <svg
-//                         xmlns="http://www.w3.org/2000/svg"
-//                         fill="none"
-//                         viewBox="0 0 24 24"
-//                         strokeWidth="2"
-//                         stroke="currentColor"
-//                         className="w-6 h-6 text-white"
-//                     >
-//                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-//                     </svg>
-//                 </CarouselNext>
-//             </Carousel>
-//         </div>
-//     );
-// };
-
-// export default Hero;
-
-
-
-
-
-// "use client";
-
-// import React, { useEffect, useState } from "react";
-// import CategoryHero from "./CategoryHero";
-// import { Input } from "../ui/input";
-// import { Search, ShoppingCart, User } from "lucide-react";
-// import Link from "next/link";
-// import Image from "next/image";
-// import CategoryIcons from "./CategoryIcons";
-// import styles from "@/styles/hero.module.css";
-// import ProductPage from "@/components/Homepage/LookingFor";
-// import Sec2products from "./Sec2products";
-// import { Button } from "../ui/button";
-
-// const Hero = () => {
-//     const placeholders = [
-//         "Dog Food...",
-//         "Cat Food...",
-//         "Bird Food...",
-//         "Fish Food..."
-//     ];
-
-//     const [placeholderIndex, setPlaceholderIndex] = useState(0);
-//     const [prevPlaceholder, setPrevPlaceholder] = useState(placeholders[0]);
-//     const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholders[0]);
-
-//     useEffect(() => {
-//         const interval = setInterval(() => {
-//             setPrevPlaceholder(currentPlaceholder);
-//             const nextIndex = (placeholderIndex + 1) % placeholders.length;
-//             setPlaceholderIndex(nextIndex);
-//             setCurrentPlaceholder(placeholders[nextIndex]);
-//         }, 3000);
-
-//         return () => clearInterval(interval);
-//     }, [placeholderIndex, currentPlaceholder]);
-
-//     return (
-//         <>
-//             <div className="relative flex justify-between">
-//                 <Image
-//                     className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50 "
-//                     src={"/left.svg"}
-//                     width={500}
-//                     height={550}
-//                     alt="left"
-//                 />
-//                 <Image
-//                     className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50"
-//                     src={"/right.svg"}
-//                     width={100}
-//                     alt="left"
-//                     height={200}
-//                 />
-//             </div>
-//             <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2 ">
-//                 <div className=" flex flex-end items-center w-full w-[90%] p-2">
-//                     {/* LOGO */}
-//                     <Link href="/" className="flex items-center ">
-//                         <Image
-//                             src={"/newLogo.png"}
-//                             width={900}
-//                             height={900}
-//                             className="w-40 h-15 z-50"
-//                             alt="LOGO"
-//                         // onLoad={(e) => (e.target.style.opacity = 1)} // Ensures the fade-in effect triggers when the image loads
-//                         />
-//                     </Link>
-//                     <div className="flex items-center justify-end w-[95%] gap-3 z-50">
-//                         <Link
-//                             href="/profile"
-//                             className="flex flex-col items-center text-black"
-//                         >
-//                             <button className="p-2 bg-[#500404] rounded-full">
-//                                 <User className="h-5 w-5 text-white" fill="#fff" />{" "}
-//                             </button>
-//                         </Link>
-//                     </div>
-//                 </div>
-//                 {/* search */}
-//                 <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
-//                     {/* <Input
-//                         type="search"
-//                         placeholder={placeholders[placeholderIndex]}
-//                         className={` border-white  w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? "-translate-y-full" : "translate-y-0"
-//                             }`}
-//                     /> */}
-
-//                     <div className="relative h-16 overflow-hidden">
-//                         <input
-//                             type="search"
-//                             className="w-full rounded-xl py-6 border-white"
-//                             placeholder={prevPlaceholder}
-//                         />
-//                         <div
-//                             className="absolute inset-0 animate-slide-up pointer-events-none"
-//                             key={currentPlaceholder}
-//                         >
-//                             <input
-//                                 type="search"
-//                                 className="w-full rounded-xl py-6 border-white"
-//                                 placeholder={currentPlaceholder}
-//                             />
-//                         </div>
-//                     </div>
-//                     <button className="absolute right-2">
-//                         <Search className="h-20 w-5" />
-//                     </button>
-//                 </div>
-
-//                 <CategoryIcons />
-//             </div>
-//             {/* <div className='bg-gradient-to-b from-[#fff59d] to-[#fad643] '> */}
-//         </>
-//     );
-// };
-
-// export default Hero;
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import { Search, ShoppingCart, User } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import CategoryIcons from "./CategoryIcons";
-import styles from "@/styles/hero.module.css";
 
 const Hero = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [inputValue, setInputValue] = useState("");
 
     const placeholders = [
         "Dog Food...",
@@ -255,6 +30,8 @@ const Hero = () => {
     }, []);
 
     useEffect(() => {
+        if (inputValue) return; // Skip animation if input value is not empty
+
         const interval = setInterval(() => {
             setIsAnimating(true);
             setTimeout(() => {
@@ -262,11 +39,11 @@ const Hero = () => {
                     prevIndex === placeholders.length - 1 ? 0 : prevIndex + 1
                 );
                 setIsAnimating(false);
-            }, 100);
+            }, 300); // Duration for the animation
         }, 2000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [inputValue]); // Dependency on inputValue
 
     return (
         <div
@@ -292,12 +69,11 @@ const Hero = () => {
                     height={200}
                 />
             </div>
-            <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2"
-            >
+            <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2">
                 <div
                     className={`flex flex-end items-center w-full w-[90%] p-2 transition-opacity duration-300 ${scrollPosition > 100
-                        ? "opacity-0 h-0 overflow-hidden"
-                        : "opacity-100"
+                            ? "opacity-0 h-0 overflow-hidden"
+                            : "opacity-100"
                         }`}
                 >
                     <Link href="/" className="flex items-center">
@@ -309,16 +85,6 @@ const Hero = () => {
                             alt="LOGO"
                         />
                     </Link>
-                    <div className="flex items-center justify-end w-[95%] gap-3 z-50">
-                        <Link
-                            href="/profile"
-                            className="flex flex-col items-center text-black"
-                        >
-                            <button className="p-2 bg-[#500404] rounded-full">
-                                <User className="h-5 w-5 text-white" fill="#fff" />
-                            </button>
-                        </Link>
-                    </div>
                 </div>
 
                 {/* Search and CategoryIcons - always visible */}
@@ -329,8 +95,10 @@ const Hero = () => {
                     <div className="flex w-[90%] items-center relative rounded-xl bg-white overflow-hidden">
                         <Input
                             type="search"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
                             placeholder={placeholders[placeholderIndex]}
-                            className={`border-white w-full rounded-xl py-6 placeholder-slide transition-transform duration-900 ${isAnimating ? "-translate-y-full" : "translate-y-0"
+                            className={`border-white w-full rounded-xl py-6 transition-transform duration-300 ${isAnimating && !inputValue ? "animate-slide-up" : ""
                                 }`}
                         />
                         <button className="absolute right-2">
@@ -340,7 +108,7 @@ const Hero = () => {
                     <CategoryIcons />
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -96,7 +96,7 @@ a {
     --radius: 0.5rem;
   }
 }
-@keyframes slideUp {
+@keyframes slide-up {
   0% {
     transform: translateY(100%);
     opacity: 0;
@@ -107,3 +107,6 @@ a {
   }
 }
 
+.placeholder-slide {
+  animation: slide-up 300ms ease-in-out;
+}
