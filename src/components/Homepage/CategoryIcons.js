@@ -67,12 +67,7 @@ const CategoryIcons = () => {
                         <TabsTrigger
                             key={category.id}
                             value={category.id}
-                            className=" textflex-shrink-0 bg-transparent data-[state=active]:shadow-none 
-        data-[state=active]:bg-transparent 
-        data-[state=active]:border-b 
-        data-[state=active]:border-white 
-        hover:bg-transparent hover:shadow-none 
-        hover:border-none"                        >
+                            className=" textflex-shrink-0 bg-transparent data-[state=active]:shadow-none hover:bg-transparent data-[state=active]:bg-transparent data-[state=active]:border-b data-[state=active]:border-white shadow-0"                        >
                             <Link href={category.href} className="flex flex-col items-center text-white hover:text-white">
                                 <div className="relative flex gap-5 w-5 rounded-[1px] overflow-hidden">
                                     <category.icon className="w-full h-full text-white hover:text-white " />

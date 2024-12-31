@@ -99,6 +99,9 @@ export default function CartPage() {
     const back = () => {
         router.back();
     };
+    const checkout = () => {
+        router.push('/checkout');
+    };
 
     const handleViewOffersClick = () => {
         router.push('/cart/coupons');
@@ -236,9 +239,10 @@ export default function CartPage() {
 
             {/* Footer */}
             <div className="fixed bottom-4 w-[90%] transition-all duration-300 ease-in-out">
-                <Button className="shadow-2xl w-[90%] left-5 fixed bottom-4 bg-[#FF7700] p-3 rounded-full shadow-lg cursor-pointer 
-            hover:bg-[#ff8c2d] transition-all duration-300 ease-in-outtext-white">
+                <Button className="shadow-2xl w-[90%] left-5 fixed bottom-4 bg-[#FF7700] p-5 rounded-lg shadow-lg cursor-pointer 
+                    text-lg hover:bg-[#ff8c2d] transition-all duration-300 ease-in-outtext-white" onClick={checkout}>
                     Proceed to Checkout
+
                 </Button>
             </div>
         </div>
