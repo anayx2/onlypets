@@ -83,7 +83,7 @@ const ProductGrid = () => {
 
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
-                <Carousel className="w-full overflow-x-auto flex gap-2">
+                <Carousel className="w-full overflow-x-auto flex gap-4 scroll-smooth snap-x snap-mandatory flex gap-2">
                     <CarouselContent className="flex">
                         {products.map((product) => (
                             <CarouselItem key={product.id} className="basis-1/2">

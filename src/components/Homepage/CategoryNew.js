@@ -87,11 +87,6 @@ const CategoryHeroNew = () => {
                                 backgroundImage: 'url(/newCategory/image.svg)', // Replace with your image URL
                             }}
                              className="w-[250px] overflow-visible rounded-lg bg-gradient-to-b from-white to-white border-none">
-                                {/* <div className="top-0 left-0 right-0 mx-2">
-                                    <div className="bg-[#4A0404] text-white px-2 py-2 rounded-b-xl mx-auto w-fit text-[8px] font-semibold">
-                                        {category.discount}
-                                    </div>
-                                </div> */}
                                 <div className="px-2 flex flex-col items-center">
                                     <h3 className="text-[#350304] text-[10px] font-extrabold text-center mt-2 pb-0 mb-0">
                                         {category.discount}
