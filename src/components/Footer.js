@@ -42,7 +42,7 @@ export function Footer() {
     const pathname = usePathname();
 
     // Array of routes where the footer should be hidden
-    const hiddenRoutes = ['/cart', '/checkout', '/coupon', '/cart/coupons'];
+    const hiddenRoutes = ['/cart', '/checkout', '/coupon', '/cart/coupons', '/auth', '/auth/'];
 
     // If current path is in hiddenRoutes, don't render the footer
     if (hiddenRoutes.includes(pathname)) {

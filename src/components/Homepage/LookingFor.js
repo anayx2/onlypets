@@ -83,10 +83,17 @@ const ProductGrid = () => {
 
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
-                <Carousel className="w-full overflow-x-auto flex gap-4 scroll-smooth snap-x snap-mandatory flex gap-2">
-                    <CarouselContent className="flex">
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: false,
+                        dragFree: true,
+                        containScroll: "trimSnaps",
+                    }}
+                    className="w-full"
+                >                    <CarouselContent className="flex">
                         {products.map((product) => (
-                            <CarouselItem key={product.id} className="basis-1/2">
+                            <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                                 <ProductCard {...product} />
                             </CarouselItem>
                         ))}
@@ -132,7 +139,7 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
                 {/* Image Section */}
                 <div className="relative aspect-square rounded-xl sm:mb-4 shadow-sm hover:shadow-md transition-shadow border border-gray-200 mb-1">
                     <Image src={image} alt={name} fill className="object-contain p-2" />
-                    <div style={{ bottom: "-10%", right: "-2%" }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#71216A] text-white px-2 py-1 space-x-2 my-2">
+                    <div style={{ bottom: "-10%", right: "-2%" }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#FF7700] text-white px-2 py-1 space-x-2 my-2">
                         <button className="p-1 rounded-full" onClick={decrement} aria-label="Decrease quantity">
                             <Minus size={15} />
                         </button>

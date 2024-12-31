@@ -50,7 +50,7 @@ const categories = [
     },
     {
         name: "Beds",
-        id: "4",
+        id: "8",
         icon: Dog,
         href: "/",
     },
@@ -61,15 +61,21 @@ const CategoryIcons = () => {
     return (
         <div className="w-full px-2 pt-6 ">
             <Tabs defaultValue={categories[0].id} >
-                <TabsList className="flex shadow-md justify-start overflow-x-auto h-auto bg-transparent gap-2 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
+                <TabsList className="flex shadow-md justify-start
+                 overflow-x-auto h-auto bg-transparent gap-2 scrollbar-none [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                     {categories.map((category) => (
                         <TabsTrigger
                             key={category.id}
                             value={category.id}
-                            className="flex-shrink-0 bg-transparent data-[state=active]:shadow-none hover:bg-transparent data-[state=active]:bg-transparent data-[state=active]:border-b data-[state=active]:border-white shadow-0"                        >
-                            <Link href={category.href} className="flex flex-col items-center text-white hover:text-foreground">
+                            className=" textflex-shrink-0 bg-transparent data-[state=active]:shadow-none 
+        data-[state=active]:bg-transparent 
+        data-[state=active]:border-b 
+        data-[state=active]:border-white 
+        hover:bg-transparent hover:shadow-none 
+        hover:border-none"                        >
+                            <Link href={category.href} className="flex flex-col items-center text-white hover:text-white">
                                 <div className="relative flex gap-5 w-5 rounded-[1px] overflow-hidden">
-                                    <category.icon className="w-full h-full" />
+                                    <category.icon className="w-full h-full text-white hover:text-white " />
                                 </div>
                                 <span className="text-[10px] mt-1 font-medium whitespace-nowrap">
                                     {category.name}

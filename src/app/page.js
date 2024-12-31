@@ -1,30 +1,23 @@
-import { Footer } from "@/components/Footer";
 import Ad from "@/components/Homepage/Ad";
 import Ad2 from "@/components/Homepage/Ad2";
 import BestSeller from "@/components/Homepage/BestSeller";
-import Category from "@/components/Homepage/Category";
 import FAQSection from "@/components/Homepage/FAQ";
-import Hero from "@/components/Homepage/Hero";
 import ProductPage from "@/components/Homepage/LookingFor";
 import CouponCarousel from "@/components/Homepage/Offer";
 import Testimonial from "@/components/Homepage/Testimonial";
 import TipsbyExperts from "@/components/Homepage/Tipsbyexpet";
 import Topfoodbrand from "@/components/Homepage/Topfoodbrand";
 import Treats from "@/components/Homepage/Treats";
-import Navbar1 from "@/components/Navbar";
 import React from "react";
-
 import styles from "@/styles/hero.module.css";
 import Sec2products from "@/components/Homepage/Sec2products";
 import { Button } from "@/components/ui/button";
-import CategoryHero from "@/components/Homepage/CategoryHero";
-import Image from "next/image";
 import CategoryHeroNew from "@/components/Homepage/CategoryNew";
 
 const page = () => {
   return (
     <>
-      <div className="bg-[#350303] pb-[50px]">
+      <div className="bg-[#350303] pb-[50px] pt-2">
         {/* <Hero/> */}
         <div className="h-[80px] text-center border border-white w-full">
           .....video.....

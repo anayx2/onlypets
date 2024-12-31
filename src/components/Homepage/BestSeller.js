@@ -139,14 +139,17 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
 const ProductGrid = () => {
     return (
         <div className="container mx-auto px-4 py-8">
-            {/* <div className="text-center mb-8">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">What Are you looking for???</h1>
-                <p className="text-gray-600 text-sm sm:text-base">You cannot go wrong with these!</p>
-            </div> */}
-
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
-                <Carousel className="w-full overflow-x-auto flex gap-2">
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: false,
+                        dragFree: true,
+                        containScroll: "trimSnaps",
+                    }}
+                    
+                    className="w-full overflow-x-auto flex gap-2">
                     <CarouselContent className="flex">
                         {products.map((product) => (
                             <CarouselItem key={product.id} className="basis-1/2">

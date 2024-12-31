@@ -11,7 +11,7 @@ export default function CartPage() {
     const router = useRouter();
     const [appliedCoupon, setAppliedCoupon] = useState(null);
 
-    const product = {
+    const product = [{
         id: 6,
         name: "Pedigree Meat Jerky Barbecued Chicken Adult Dog Meaty Treat",
         category: "Dogs/Cats",
@@ -22,7 +22,19 @@ export default function CartPage() {
         salePrice: 540.0,
         discount: 15,
         brand: "Pedigree",
-    };
+    },
+    {
+        id: 7,
+        name: "Pedigree Meat Jerky Barbecued Chicken Adult Dog Meaty Treat",
+        category: "Dogs/Cats",
+        weight: "80 gm",
+        images: ["/topproducts/p6.jpg"],
+        rating: 4,
+        originalPrice: 170.0,
+        salePrice: 540.0,
+        discount: 15,
+        brand: "Pedigree",
+    }];
 
     useEffect(() => {
         // Get applied coupon from localStorage
@@ -126,7 +138,7 @@ export default function CartPage() {
                             />
                         </div>
                         <div className="flex-1">
-                            <h3 className="font-medium line-clamp-2">{product.name}</h3>
+                            <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
                             <p className="text-sm text-gray-500">{product.weight}</p>
                             <div className="flex items-center justify-between mt-2">
                                 <div className="flex items-center gap-2">

@@ -86,9 +86,9 @@ const CategoryHeroNew = () => {
                             <Card style={{
                                 backgroundImage: 'url(/newCategory/image.svg)', // Replace with your image URL
                             }}
-                             className="w-[250px] overflow-visible rounded-lg bg-gradient-to-b from-white to-white border-none">
+                                className="w-[250px] overflow-visible rounded-lg bg-gradient-to-b from-white to-white border-none">
                                 <div className="px-2 flex flex-col items-center">
-                                    <h3 className="text-[#350304] text-[10px] font-extrabold text-center mt-2 pb-0 mb-0">
+                                    <h3 className="text-[#350304] text-[11px] font-extrabold text-center mt-2 pb-0 mb-0">
                                         {category.discount}
                                     </h3>
                                     <span className='text-[#350304] text-[11px] font-medium text-center'>
@@ -98,7 +98,7 @@ const CategoryHeroNew = () => {
                                         <img
                                             src={category.image}
                                             alt={category.title}
-                                            className="w-auto h-[55px] mt-[2px]"
+                                            className="w-auto h-[65px] mt-[2px]"
                                         />
                                     </div>
                                 </div>

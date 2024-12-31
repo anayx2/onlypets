@@ -30,7 +30,7 @@ export default function AuthForm() {
     }
 
     return (
-        <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-[#71216A]">
+        <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-[#FF7700] shadow-lg">
             <div className="w-full max-w-sm space-y-6 border-[2px] rounded-lg p-5 bg-white">
                 <div className="flex flex-col items-center  space-y-2">
                     <div className="w-24 h-24 rounded-full bg-[#e6f2ef] flex items-center justify-center">
@@ -98,7 +98,7 @@ export default function AuthForm() {
                                 <div className="flex justify-end">
                                     <Button
                                         variant="link"
-                                        className="px-0 font-normal text-sm text-gray-600"
+                                        className="px-0 font-normal text-sm text-red-600"
                                     >
                                         Forgot Password?
                                     </Button>
