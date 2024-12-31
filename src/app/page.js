@@ -19,6 +19,7 @@ import Sec2products from "@/components/Homepage/Sec2products";
 import { Button } from "@/components/ui/button";
 import CategoryHero from "@/components/Homepage/CategoryHero";
 import Image from "next/image";
+import CategoryHeroNew from "@/components/Homepage/CategoryNew";
 
 const page = () => {
   return (
@@ -28,7 +29,8 @@ const page = () => {
         <div className="h-[80px] text-center border border-white w-full">
           .....video.....
         </div>
-        <CategoryHero />
+        {/* <CategoryHero /> */}
+        <CategoryHeroNew />
       </div>
       <div className="">
         <div className="relative w-full ">
@@ -61,7 +63,7 @@ const page = () => {
       <TipsbyExperts />
       <Testimonial />
       <FAQSection />
-     
+
     </>
   );
 };
