@@ -47,7 +47,7 @@ const LoginImages = () => {
       }
     `;
     return (
-        <div>
+        <div className="relative">
             <div className="overflow-hidden w-full py-4">
                 {/* Inject keyframes directly into the component */}
                 <style>{keyframesStyle}</style>
@@ -73,7 +73,7 @@ const LoginImages = () => {
                 {/* Marquee Container */}
                 <div style={{ overflow: 'hidden', width: '100%' }}>
                     <div style={marqueeStyle}>
-                        {img.map((image, index) => (
+                        {img1.map((image, index) => (
                             <Image
                                 key={index}
                                 src={image.src}
@@ -85,6 +85,9 @@ const LoginImages = () => {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div>
+                <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-[#FF7700] to-transparent"></div>
             </div>
         </div>
     );
