@@ -90,10 +90,10 @@ const ProductGrid = () => {
                         dragFree: true,
                         containScroll: "trimSnaps",
                     }}
-                    className="w-full"
-                >                    <CarouselContent className="flex">
+                    className="w-full overflow-x-auto flex gap-2">
+                    <CarouselContent className="flex">
                         {products.map((product) => (
-                            <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                            <CarouselItem key={product.id} className="pl-4 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                                 <ProductCard {...product} />
                             </CarouselItem>
                         ))}
@@ -135,7 +135,7 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
 
     return (
         <div className="bg-white rounded-lg md:px-3 lg:md:px-3 w-[160px] lg:w-[auto] md:w-[auto] sm:pt-4">
-            <div className="p-2">
+            <div className="p-2 ">
                 {/* Image Section */}
                 <div className="relative aspect-square rounded-xl sm:mb-4 shadow-sm hover:shadow-md transition-shadow border border-gray-200 mb-1">
                     <Image src={image} alt={name} fill className="object-contain p-2" />
