@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import { Search } from "lucide-react";
+import { CircleUserRound, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import CategoryIcons from "./CategoryIcons";
@@ -12,6 +12,8 @@ const Hero = () => {
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const [inputValue, setInputValue] = useState("");
+    const [visible, setVisible] = useState(false);
+
 
     const placeholders = [
         "Dog Food...",
@@ -53,13 +55,13 @@ const Hero = () => {
                 className={`relative flex justify-between transition-opacity duration-300 ${scrollPosition > 100 ? "opacity-0 h-0" : "opacity-100"
                     }`}>
                 <Image
-                    className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50"
+                    className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50 z-20"
                     src={"/left.svg"}
                     width={500}
                     height={550}
                     alt="left" />
                 <Image
-                    className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50"
+                    className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50 z-20"
                     src={"/right.svg"}
                     width={100}
                     alt="left"
@@ -67,7 +69,7 @@ const Hero = () => {
             </div>
             <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2">
                 <div
-                    className={`flex flex-end items-center w-full w-[90%] p-2 transition-opacity duration-300 ${scrollPosition > 100
+                    className={` z-50 flex flex-end items-center justify-between w-full w-[90%] p-2 ${scrollPosition > 100
                         ? "opacity-0 h-0 overflow-hidden"
                         : "opacity-100"
                         }`}
@@ -79,8 +81,19 @@ const Hero = () => {
                             height={900}
                             className="w-40 h-15 z-50"
                             alt="LOGO"
+                            style={{
+                                opacity: visible ? 1 : 0,
+                                transition: "opacity 0.4s ease-in-out",
+                            }}
+                            onLoad={() => setVisible(true)}
                         />
                     </Link>
+
+                    <Link href="/profile" className="text-white hover:text-white">
+                        <CircleUserRound className="w-8 h-8" />
+
+                    </Link>
+
                 </div>
 
                 {/* Search and CategoryIcons - always visible */}
