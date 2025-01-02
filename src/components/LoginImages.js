@@ -55,13 +55,11 @@ const LoginImages = () => {
                 <div style={{ overflow: 'hidden', width: '100%' }}>
                     <div style={marqueeStyle}>
                         {img.map((image, index) => (
-                            <Image
+                            <img
                                 key={index}
                                 src={image.src}
                                 alt={`Image ${index + 1}`}
-                                width={100}
-                                height={100}
-                                style={{ borderRadius: '8px' }}
+                                style={{ borderRadius: '8px', width: "6rem" }}
                             />
                         ))}
                     </div>
@@ -74,13 +72,11 @@ const LoginImages = () => {
                 <div style={{ overflow: 'hidden', width: '100%' }}>
                     <div style={marqueeStyle}>
                         {img1.map((image, index) => (
-                            <Image
+                            <img
                                 key={index}
                                 src={image.src}
                                 alt={`Image ${index + 1}`}
-                                width={100}
-                                height={100}
-                                style={{ borderRadius: '8px' }}
+                                style={{ borderRadius: '8px', width: "6rem" }}
                             />
                         ))}
                     </div>

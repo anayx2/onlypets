@@ -89,7 +89,7 @@ const Hero = () => {
                         />
                     </Link>
 
-                    <Link href="/profile" className="text-white hover:text-white">
+                    <Link href="/auth" className="text-white hover:text-white">
                         <CircleUserRound className="w-8 h-8" />
 
                     </Link>

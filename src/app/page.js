@@ -1,3 +1,4 @@
+'use client'
 import Ad from "@/components/Homepage/Ad";
 import Ad2 from "@/components/Homepage/Ad2";
 import BestSeller from "@/components/Homepage/BestSeller";
@@ -13,8 +14,14 @@ import styles from "@/styles/hero.module.css";
 import Sec2products from "@/components/Homepage/Sec2products";
 import { Button } from "@/components/ui/button";
 import CategoryHeroNew from "@/components/Homepage/CategoryNew";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const router = useRouter();
+
+  const shop = () => {
+    router.push("/shop");
+  };
   return (
     <>
       <div className="bg-[#350303] pb-[50px] pt-2">
@@ -39,7 +46,8 @@ const page = () => {
         <div className="p-5 pt-5 ">
           <Sec2products />
           <span className="w-full flex justify-center mt-5">
-            <Button className="bg-white mt-2 text-black hover:bg-white border-[1px] border-[#ef8427]">
+            <Button className="bg-white mt-2 text-black hover:bg-white border-[1px] border-[#ef8427]"
+              onClick={shop}>
               See all products
             </Button>
           </span>
