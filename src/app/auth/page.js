@@ -1,232 +1,116 @@
 'use client'
 
-import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
-import Image from "next/image"
-import { login, register } from "@/components/auth"
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import Image from "next/image";
+import LoginImages, { ProductCarousel } from "@/components/LoginImages";
 
 export default function AuthForm() {
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-    const [passwordError, setPasswordError] = useState('')
+    const [visible, setVisible] = useState(false);
+    const [currentStep, setCurrentStep] = useState(1); // Track the current step
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [otp, setOtp] = useState("");
 
-    const handleRegister = async () => {
-        const password = formData.get('password')
-        const confirmPassword = formData.get('confirmPassword')
-
-        if (password !== confirmPassword) {
-            setPasswordError('Passwords do not match')
-            return
+    // Handles phone number submission
+    const handlePhoneSubmit = (e) => {
+        e.preventDefault();
+        if (phoneNumber.trim() === "" || phoneNumber.length < 10) {
+            alert("Please enter a valid phone number");
+            return;
         }
+        setCurrentStep(2); // Proceed to the OTP step
+    };
 
-        setPasswordError('')
-        setIsLoading(true)
-        await register(formData)
-        setIsLoading(false)
-    }
+    // Handles OTP submission
+    const handleOtpSubmit = (e) => {
+        e.preventDefault();
+        if (otp.trim() === "" || otp.length < 4) {
+            alert("Please enter a valid OTP");
+            return;
+        }
+        alert("OTP Verified Successfully!");
+    };
 
-    return (
-        <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-[#FF7700] shadow-lg">
-            <div className="w-full max-w-sm space-y-6 border-[2px] rounded-lg p-5 bg-white">
-                <div className="flex flex-col items-center  space-y-2">
-                    <div className="w-24 h-24 rounded-full bg-[#e6f2ef] flex items-center justify-center">
-                        <img
-                            src="/cat_profile.gif"
-                            alt="Cat"
-                        />
+    return (<>
+        <div className="min-h-screen flex flex-col justify-between  bg-[#FF7700]">
+            <div className="bg-[#FF7700]">
+                <LoginImages />
+            </div>
+            <div className=" p-4 flex flex-col items-center justify-between bg-[#FF7700] shadow-lg">
+                <div className="w-full max-w-sm space-y-6 border-[2px] rounded-lg p-5 bg-white">
+                    <div className="flex flex-col items-center space-y-2">
+                        <div className="flex items-center justify-center">
+                            <Image
+                                width={150}
+                                height={150}
+                                src={"/logo.png"}
+                                alt="Cat"
+                                style={{
+                                    opacity: visible ? 1 : 0,
+                                    transition: "opacity 1s ease-in-out",
+                                }}
+                                onLoad={() => setVisible(true)}
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <Tabs defaultValue="login" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="login">Login</TabsTrigger>
-                        <TabsTrigger value="register">Register</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="login" className="space-y-4">
-                        {/* <div className="text-center space-y-2">
-                            <h2 className="text-xl font-semibold">
-                                Welcome Back To
-                            </h2>
-                            <h2 className="text-2xl font-bold">Only Pets</h2>
-                        </div> */}
-
-                        <form
-                            action={async (formData) => {
-                                setIsLoading(true)
-                                await login(formData)
-                                setIsLoading(false)
-                            }}
-                            className="space-y-4"
-                        >
+                    {/* Step 1: Enter Phone Number */}
+                    {currentStep === 1 && (
+                        <form onSubmit={handlePhoneSubmit} className="space-y-4">
                             <div className="space-y-2">
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="Email"
-                                    required
-                                    className="h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <div className="relative">
-                                    <Input
-                                        id="password"
-                                        name="password"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Password"
-                                        required
-                                        className="h-12 pr-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                                    >
-                                        {showPassword ? (
-                                            <EyeOffIcon className="h-5 w-5" />
-                                        ) : (
-                                            <EyeIcon className="h-5 w-5" />
-                                        )}
-                                    </button>
-                                </div>
-                                <div className="flex justify-end">
-                                    <Button
-                                        variant="link"
-                                        className="px-0 font-normal text-sm text-red-600"
-                                    >
-                                        Forgot Password?
-                                    </Button>
-                                </div>
-                            </div>
-                            <Button
-                                type="submit"
-                                className="w-full h-12 text-lg font-bold bg-[#FF7700] hover:bg-[#FF7700]"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? "Please wait..." : "Log In"}
-                            </Button>
-                        </form>
-                    </TabsContent>
-
-                    <TabsContent value="register" className="space-y-4">
-                        {/* <div className="text-center space-y-2">
-                            <h1 className="text-xl font-semibold tracking-tight">
-                                Create Account At
-                            </h1>
-                            <h2 className="text-2xl font-bold">Panda Express</h2>
-                        </div> */}
-
-                        <form
-                            action={handleRegister}
-                            className="space-y-4 mt-5"
-                        >
-                            <div className="space-y-2">
-                                <Input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    placeholder="Full Name"
-                                    required
-                                    className="h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
+                                {/* <h2 className="text-center text-gray-700">
+                                Log in or Sign up      </h2> */}
                                 <Input
                                     id="phone"
                                     name="phone"
                                     type="tel"
-                                    placeholder="Phone Number"
+                                    placeholder="Enter your phone number"
                                     required
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
                                     className="h-12"
                                 />
-                            </div>
-                            <div className="space-y-2">
-                                <Input
-                                    id="city"
-                                    name="city"
-                                    type="text"
-                                    placeholder="City"
-                                    required
-                                    className="h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Input
-                                    id="register-email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="Email"
-                                    required
-                                    className="h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <div className="relative">
-                                    <Input
-                                        id="register-password"
-                                        name="password"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Password"
-                                        required
-                                        className="h-12 pr-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                                    >
-                                        {showPassword ? (
-                                            <EyeOffIcon className="h-5 w-5" />
-                                        ) : (
-                                            <EyeIcon className="h-5 w-5" />
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <div className="relative">
-                                    <Input
-                                        id="confirm-password"
-                                        name="confirmPassword"
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        placeholder="Confirm Password"
-                                        required
-                                        className="h-12 pr-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                                    >
-                                        {showConfirmPassword ? (
-                                            <EyeOffIcon className="h-5 w-5" />
-                                        ) : (
-                                            <EyeIcon className="h-5 w-5" />
-                                        )}
-                                    </button>
-                                </div>
-                                {passwordError && (
-                                    <p className="text-sm text-red-500 mt-1">{passwordError}</p>
-                                )}
                             </div>
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base bg-[#FF7700] hover:bg-[#FF7700]"
-                                disabled={isLoading}
+                                className="w-full h-12 text-lg font-bold bg-[#FF7700] hover:bg-[#FF7700]"
                             >
-                                {isLoading ? "Please wait..." : "Create Account"}
+                                Send OTP
                             </Button>
                         </form>
-                    </TabsContent>
-                </Tabs>
+                    )}
+
+                    {/* Step 2: Enter OTP */}
+                    {currentStep === 2 && (
+                        <form onSubmit={handleOtpSubmit} className="space-y-2">
+                            <div className="space-y-2 text-center">
+                                {/* <h2 className="text-lg font-semibold">We have sent an OTP to your phone number.</h2> */}
+                                <p className="text-sm text-gray-600">
+                                    We have sent an OTP to your phone number.
+                                </p>
+                            </div>
+                            <div className="flex justify-center">
+                                <InputOTP maxLength={4} value={otp} onChange={setOtp}>
+                                    <InputOTPGroup>
+                                        <InputOTPSlot index={0} />
+                                        <InputOTPSlot index={1} />
+                                        <InputOTPSlot index={2} />
+                                        <InputOTPSlot index={3} />
+                                    </InputOTPGroup>
+                                </InputOTP>
+                            </div>
+                            <Button
+                                type="submit"
+                                className="w-full h-12 text-lg font-bold bg-[#FF7700] hover:bg-[#FF7700]"
+                            >
+                                Verify OTP
+                            </Button>
+                        </form>
+                    )}
+                </div>
             </div>
         </div>
-    )
+    </>);
 }
-

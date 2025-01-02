@@ -48,32 +48,28 @@ const Hero = () => {
     return (
         <div
             className={`sticky top-0 z-50 transition-all duration-300 ${scrollPosition > 100 ? "h-[120px]" : "h-auto"
-                }`}
-        >
+                }`}>
             <div
                 className={`relative flex justify-between transition-opacity duration-300 ${scrollPosition > 100 ? "opacity-0 h-0" : "opacity-100"
-                    }`}
-            >
+                    }`}>
                 <Image
                     className="absolute left-0 top-[-100px] w-[70%] h-60 opacity-50"
                     src={"/left.svg"}
                     width={500}
                     height={550}
-                    alt="left"
-                />
+                    alt="left" />
                 <Image
                     className="absolute top-[-50px] right-0 w-[40%] h-50 opacity-50"
                     src={"/right.svg"}
                     width={100}
                     alt="left"
-                    height={200}
-                />
+                    height={200} />
             </div>
             <div className="bg-gradient-to-b from-red-800 to-[#350303] flex flex-col items-center justify-between pt-2">
                 <div
                     className={`flex flex-end items-center w-full w-[90%] p-2 transition-opacity duration-300 ${scrollPosition > 100
-                            ? "opacity-0 h-0 overflow-hidden"
-                            : "opacity-100"
+                        ? "opacity-0 h-0 overflow-hidden"
+                        : "opacity-100"
                         }`}
                 >
                     <Link href="/" className="flex items-center">

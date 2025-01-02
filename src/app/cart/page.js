@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import BestSeller from "@/components/Homepage/BestSeller";
 
 export default function CartPage() {
     const router = useRouter();
@@ -117,7 +118,7 @@ export default function CartPage() {
                 <h2 className="text-lg font-semibold mb-0">My Cart</h2>
             </div>
 
-            <div className="flex-1 p-4 space-y-4">
+            <div className="flex-1 space-y-4">
                 {/* Savings Banner */}
                 <div className="bg-green-50 p-3 rounded-lg">
                     <div className="flex justify-between items-center">
@@ -127,7 +128,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Coupon Section */}
-                <Card className="p-3">
+                <Card className="p-3 mx-4">
                     <div className="flex justify-between items-center">
                         {!appliedCoupon ? (
                             <>
@@ -164,7 +165,7 @@ export default function CartPage() {
 
                 {/* Products */}
                 <div className="space-y-4">
-                    <Card className="p-3 flex flex-col gap-4">
+                    <Card className="p-3 flex flex-col gap-4 mx-4">
                         {products.map((product) => (
                             <div key={product.id} className="flex gap-3 border-b pb-4 border-gray-200">
                                 <div className="relative w-20 h-20">
@@ -207,8 +208,15 @@ export default function CartPage() {
                     </Card>
                 </div>
 
+                <div className=" flex flex-col">
+                    <h2 className="text-center mt-3 mb-0">
+                        People also brought
+                    </h2>
+                    <BestSeller />
+                </div>
+
                 {/* Bill Details */}
-                <Card className="p-4 space-y-3">
+                <Card className="p-4 space-y-3 mx-4">
                     <h2 className="font-semibold">Bill details</h2>
                     <div className="space-y-2 text-sm">
                         <div className="flex justify-between">

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import AddToCartButton from '../AddToCartButton';
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 // import { useCart } from '../Cartcontext';
 
@@ -88,7 +89,11 @@ const products = [
 const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice, discount, brand }) => {
     const [quantity, setQuantity] = useState(1);
     const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
+    const router = useRouter();
 
+    const product = () => {
+        router.push('/product')
+    }
     const increment = () => setQuantity((prev) => prev + 1);
     const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
@@ -148,7 +153,7 @@ const ProductGrid = () => {
                         dragFree: true,
                         containScroll: "trimSnaps",
                     }}
-                    
+
                     className="w-full overflow-x-auto flex gap-2">
                     <CarouselContent className="flex">
                         {products.map((product) => (

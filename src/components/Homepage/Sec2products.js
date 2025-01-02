@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { useCart } from "@/context/CartContext";
 import AddToCartButton from '../AddToCartButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
+import { useRouter } from "next/navigation";
+
 const products = [
     {
         id: 1,
@@ -80,13 +82,13 @@ const ProductGrid = () => {
             {/* Mobile Carousel View */}
             <div className="sm:hidden">
                 <Carousel
-                opts={{
-                    align: "start",
-                    loop: false,
-                    dragFree: true,
-                    containScroll: "trimSnaps",
-                  }}
-                className="w-full overflow-x-auto flex gap-2">
+                    opts={{
+                        align: "start",
+                        loop: false,
+                        dragFree: true,
+                        containScroll: "trimSnaps",
+                    }}
+                    className="w-full overflow-x-auto flex gap-2">
                     <CarouselContent className="flex">
                         {products.map((product) => (
                             <CarouselItem key={product.id} className="basis-1/2">
@@ -110,6 +112,7 @@ const ProductGrid = () => {
 };
 
 const Sec2products = () => {
+
     return (
         <div>
             <ProductGrid />
@@ -121,10 +124,13 @@ export default Sec2products;
 const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice, discount, brand }) => {
     const [quantity, setQuantity] = useState(1);
     const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
+    const router = useRouter();
 
+    const product = () => {
+        router.push('/product')
+    }
     const increment = () => setQuantity((prev) => prev + 1);
     const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
     const handleUpdateQuantity = () => {
         updateQuantity(id, quantity);
     };
@@ -134,7 +140,7 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
             <div className="p-2">
                 {/* Image Section */}
                 <div className="relative aspect-square rounded-xl sm:mb-4 hover:shadow-md transition-shadow mb-1">
-                    <Image src={image} alt={name} fill className="object-contain p-2" />
+                    <Image src={image} alt={name} fill className="object-contain p-2" onClick={product} />
                     <div style={{ bottom: "-10%", right: "-2%" }} className="absolute w-[auto] flex border-[1px] rounded-lg bg-[#FF7700] text-white px-2 py-1 space-x-2 my-2">
                         <button className="p-1 rounded-full" onClick={decrement} aria-label="Decrease quantity">
                             <Minus size={15} />
@@ -145,7 +151,7 @@ const ProductCard = ({ id, image, name, weight, rating, originalPrice, salePrice
                         </button>
                     </div>
                 </div>
-                <div className='relative'>
+                <div className='relative' onClick={product}>
                     {/* Product Details */}
                     <span className="flex justify-between items-center">
                         <h3 className="font-semibold text-xs sm:text-base mb-1">{brand}</h3>
