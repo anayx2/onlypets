@@ -34,7 +34,7 @@ export default function AuthForm() {
     };
 
     return (<>
-        <div className="min-h-screen flex flex-col justify-between  bg-[#FF7700]">
+        <div className="h-[100dvh] flex flex-col justify-between  bg-[#FF7700]">
             <div className="bg-[#FF7700]">
                 <LoginImages />
             </div>

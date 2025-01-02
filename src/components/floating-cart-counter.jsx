@@ -24,7 +24,13 @@ const FloatingCartCounter = () => {
     setPrevTotalItems(totalItems);
   }, [totalItems, prevTotalItems]);
 
-  if (pathname === "/checkout" || pathname === "/cart") return null;
+  if (
+    pathname === "/checkout" ||
+    pathname === "/cart" ||
+    pathname === "/auth" ||
+    pathname === "/cart/coupons"
+  )
+    return null;
   if (totalItems === 0) return null;
 
   const checkout = () => {
