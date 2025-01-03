@@ -60,22 +60,22 @@ export function Completestep({ currentStep, bookingReference }) {
 
     return (
         <>
-            <div className="w-full relative overflow-hidden h-[50dvh] rounded-lg flex flex-col items-center">
+            <div className="w-full relative overflow-hidden h-[70dvh] rounded-lg flex flex-col items-center">
                 <div
                     className={cn(" absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-green-600/100 before:scale-0 before:rounded-full",
                         showAnimation && "before:animate-bg-spread"
                     )}
                 />
-                <div className="w-full items-center h-[50vh] flex flex-col gap-3 justify-center relative">
+                <div className="w-full items-center h-[70vh] flex flex-col gap-3 justify-center relative">
                     <CircleCheck className="h-20 w-20 text-white" />
                     <h2 className="text-xl font-semibold text-white">Order Placed Successfully!</h2>
                     <p className="text-white">Reference: {bookingReference}</p>
-                </div>
-            </div>
             <span className="flex flex-wrap gap-5 items-center w-full justify-center mt-5">
                 <Button variant="outline" className="border-[#FF7700] border" onClick={orderDetails}>Check Status!</Button>
                 <Button className="bg-[#FF7700] " onClick={homepage}>Continue Shopping</Button>
             </span>
+                </div>
+            </div>
         </>
     );
 }
