@@ -46,7 +46,7 @@ export default function CheckoutPage() {
                 </div>
                 <h2 className="text-lg font-semibold mb-0">Checkout</h2>
             </div>
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-2">
 
                 <div className="mb-8">
                     <CheckoutTimeline currentStep={currentStep} />

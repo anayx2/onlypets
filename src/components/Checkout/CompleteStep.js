@@ -2,13 +2,19 @@
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { CircleCheck } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 
 export function Completestep({ currentStep, bookingReference }) {
-    // Move handleClick to useCallback to prevent unnecessary recreations
+    const [showAnimation, setShowAnimation] = useState(false);
+    const router = useRouter();
+
+
     const handleClick = useCallback(() => {
-        const end = Date.now() + 3 * 1000;
+        setShowAnimation(true);
+        const end = Date.now() + 1 * 800;
         const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 
         const frame = () => {
@@ -37,28 +43,40 @@ export function Completestep({ currentStep, bookingReference }) {
         frame();
     }, []);
 
-    // This will run automatically when the component mounts
     useEffect(() => {
-        // Slight delay to ensure DOM is ready
         const timer = setTimeout(() => {
             handleClick();
         }, 100);
 
         return () => clearTimeout(timer);
-    }, []); // Remove currentStep dependency since we know this component only renders at step 3
+    }, [handleClick]);
+
+    const orderDetails = () => {
+        router.push('#');
+    };
+    const homepage = () => {
+        router.push('/');
+    };
 
     return (
-        <div className="w-full">
-            <div className="w-full items-center h-[50vh] flex flex-col gap-4 justify-center">
-                <CircleCheck className=" h-10 w-10 text-green" />
-                <h2 className="text-2xl font-semibold">Order Placed Successfully!</h2>
-                <p className="text-gray-600">Reference: {bookingReference}</p>
-                <span className="flex flex-wrap gap-5">
-                    <Button variant="outline" className=" border-[#FF7700] border" >Check Status!</Button>
-                    <Button className="bg-[#FF7700]">Continue Shopping</Button>
-                </span>
+        <>
+            <div className="w-full relative overflow-hidden h-[50dvh] rounded-lg flex flex-col items-center">
+                <div
+                    className={cn(" absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-green-600/100 before:scale-0 before:rounded-full",
+                        showAnimation && "before:animate-bg-spread"
+                    )}
+                />
+                <div className="w-full items-center h-[50vh] flex flex-col gap-3 justify-center relative">
+                    <CircleCheck className="h-20 w-20 text-white" />
+                    <h2 className="text-xl font-semibold text-white">Order Placed Successfully!</h2>
+                    <p className="text-white">Reference: {bookingReference}</p>
+                </div>
             </div>
-        </div>
+            <span className="flex flex-wrap gap-5 items-center w-full justify-center mt-5">
+                <Button variant="outline" className="border-[#FF7700] border" onClick={orderDetails}>Check Status!</Button>
+                <Button className="bg-[#FF7700] " onClick={homepage}>Continue Shopping</Button>
+            </span>
+        </>
     );
 }
 

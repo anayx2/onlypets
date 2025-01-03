@@ -18,6 +18,10 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
+				'bg-spread': {
+					'0%': { transform: 'scale(0)', opacity: 0 },
+					'100%': { transform: 'scale(4)', opacity: 1 }
+				},
 				'accordion-down': {
 					from: {
 						height: '0'
@@ -44,8 +48,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'slide-up': 'slide-up 0.5s ease-out',
 				'fadeIn': "fadeIn 1s ease-in-out",
-
-
+				'bg-spread': 'bg-spread 1.5s ease-out forwards'
 			}
 		}
 	},

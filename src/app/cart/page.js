@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import BestSeller from "@/components/Homepage/BestSeller";
+import { Footer } from "@/components/Footer";
 
 export default function CartPage() {
     const router = useRouter();
@@ -243,8 +244,8 @@ export default function CartPage() {
                         </div>
                     </div>
                 </Card>
+            <Footer />
             </div>
-
             {/* Footer */}
             <div className="fixed bottom-4 w-[90%] transition-all duration-300 ease-in-out">
                 <Button className="shadow-2xl w-[90%] left-5 fixed bottom-4 bg-[#FF7700] p-5 rounded-lg shadow-lg cursor-pointer 
