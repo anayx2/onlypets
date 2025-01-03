@@ -247,9 +247,9 @@ export default function CartPage() {
                         </div>
                     </Card>
                 </div>
-                <div className="fixed bottom-4 w-[90%] transition-all duration-300 ease-in-out">
+                <div className="fixed bottom-4 w-[90%] transition-all duration-300 ease-in-out z-50">
                     <Button className="shadow-2xl w-[90%] left-5 fixed bottom-4 bg-[#FF7700] p-5 rounded-lg shadow-lg cursor-pointer 
-                    text-lg hover:bg-[#ff8c2d] transition-all duration-300 ease-in-outtext-white" onClick={checkout}>
+                    text-lg hover:bg-[#ff8c2d] transition-all duration-300 ease-in-outtext-white z-50" onClick={checkout}>
                         Proceed to Checkout
                     </Button>
                 </div>

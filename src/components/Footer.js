@@ -51,8 +51,8 @@ export function Footer() {
 
     return (
         <>
-            <div className="p-4 flex items-end justify-between relative">
-                <div className="flex text-[40px] font-bold text-[#FF7700] z-20">
+            <div className="p-4 flex items-end justify-between relative z-20">
+                <div className="flex text-[40px] font-bold text-[#FF7700]">
                     <span>
                         Pet store for<br /> your furry<br /> friends...
                     </span>
