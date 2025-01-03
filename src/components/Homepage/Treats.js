@@ -81,7 +81,7 @@ const Treats = () => {
                             Dog
                         </button>
                         <button
-                            className={`px-6 py-2 rounded-full transition-colors ${selectedCategory === 'cat' ? 'bg-blue-800 text-white' : 'hover:bg-gray-300'}`}
+                            className={`px-6 py-2 rounded-full transition-colors ${selectedCategory === 'cat' ? 'bg-orange-500 text-white' : 'hover:bg-gray-300'}`}
                             onClick={() => handleToggle('cat')}
                         >
                             Cat
