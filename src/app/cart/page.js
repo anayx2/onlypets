@@ -251,7 +251,6 @@ export default function CartPage() {
                     <Button className="shadow-2xl w-[90%] left-5 fixed bottom-4 bg-[#FF7700] p-5 rounded-lg shadow-lg cursor-pointer 
                     text-lg hover:bg-[#ff8c2d] transition-all duration-300 ease-in-outtext-white" onClick={checkout}>
                         Proceed to Checkout
-
                     </Button>
                 </div>
             </div>
